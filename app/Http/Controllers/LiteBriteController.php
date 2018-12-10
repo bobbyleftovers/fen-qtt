@@ -14,8 +14,6 @@ class LiteBriteController extends Controller
      */
     public function index()
     {
-        $page_title = 'liteBrite';
-        $page_slug = 'liteBrite';
         return view('litebrite/litebrite-home',compact('liteBrite','page_title','page_slug'));
     }
 
@@ -74,7 +72,7 @@ class LiteBriteController extends Controller
         $this->postImage->add($input);
 
 
-        return back()->with('success','Image Upload successful');
+        return back()->with('success','Success!');
 
     }
 
