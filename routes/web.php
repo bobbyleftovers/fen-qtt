@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','liteBrite@index');
+Route::get('/config','liteBrite@getConfig');
+Route::post('/config','liteBrite@setConfig');
+Route::post('/store','liteBrite@store');
