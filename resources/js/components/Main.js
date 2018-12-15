@@ -20,10 +20,24 @@ import Button from 'react-bulma-components/lib/components/button';
 class Main extends Component {
     
     state = {
-		response: null
+        response: null,
+        file: null,
+        loading:false,
+        testVar: 0
 	}
 
     componentDidMount(){}
+    
+    submit(evt){
+        evt.preventDefault();
+        axios.post('/store')
+        .then(res => {
+            console.log('response:',res)
+        })
+        .error(err => {
+            console.log('error:',err);
+        })
+    }
 
 	testConnect(){
         this.setState({
@@ -37,14 +51,17 @@ class Main extends Component {
             },
             responseType: 'json',
             })
-			.then( response => {
+			.then((response) => {
                 console.log(response);
+                let num = this.state.testVar;
+                num++;
 				this.setState({
-					response:response.data.test1,
+                    response:response.data.test1,
+                    testVar: num,
 					loading:false
 				});
 			})
-			.catch(error => {
+			.catch((error) => {
 				console.log(error);
 				this.setState({
 					error:true,
@@ -64,32 +81,31 @@ class Main extends Component {
                     <Columns.Column>
                         <Box>
                             <div className="card-header">
-                            <i className="fas fa-ad"></i>
-                             Example Component</div>
+                                <h1 className="title is-1">LiteBrite</h1>
+                            </div>
 
                             <div className="card-body">
-                                I'm an example component!
+                                <h2 className="subtitle is-4">Upload a file and we'll put it up on the LiteBrite {this.state.testVar}</h2>
                             </div>
-                        
-                            <Field>
-                                <Label>Name</Label>
-                                <Control>
-                                <Input placeholder="Text input" />
-                                </Control>
-                            </Field>
+                                <div className="file has-name is-fullwidth">
+                                    <label className="file-label">
+                                        <input className="file-input" type="file" name="resume"/>
+                                        <span className="file-cta">
+                                            <span className="file-icon">
+                                                <i className="fas fa-upload"></i>
+                                            </span>
+                                            <span className="file-label">
+                                                Choose a file…
+                                            </span>
+                                            <span className="file-name">
+                                            </span>
+                                        </span>
+                                    </label>
+                                </div>
 
-                            <Field kind="group">
-                                <Control>
-                                <Button type="primary">Submit</Button>
-                                </Control>
-                                <Control>
-                                <Button color="link">Cancel</Button>
-                                </Control>
-                            </Field>
-
-                            <Button onClick={() => this.testConnect()}>
-                                Submit
-                            </Button>
+                                <Button type="submit" onClick={() => this.testConnect()}>
+                                    Submit
+                                </Button>
                         </Box>
                         {responseText}
                     </Columns.Column>

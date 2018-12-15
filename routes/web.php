@@ -11,7 +11,10 @@
 |
 */
 
+// Getters
 Route::get('/','liteBrite@index');
 Route::get('/config','liteBrite@getConfig');
+
+// Setters
 Route::post('/config','liteBrite@setConfig');
 Route::post('/store','liteBrite@store');

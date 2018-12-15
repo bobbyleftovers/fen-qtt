@@ -41557,13 +41557,26 @@ var Main = function (_Component) {
         }
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Main.__proto__ || Object.getPrototypeOf(Main)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-            response: null
+            response: null,
+            file: null,
+            loading: false,
+            testVar: 0
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(Main, [{
         key: 'componentDidMount',
         value: function componentDidMount() {}
+    }, {
+        key: 'submit',
+        value: function submit(evt) {
+            evt.preventDefault();
+            axios.post('/store').then(function (res) {
+                console.log('response:', res);
+            }).error(function (err) {
+                console.log('error:', err);
+            });
+        }
     }, {
         key: 'testConnect',
         value: function testConnect() {
@@ -41581,8 +41594,11 @@ var Main = function (_Component) {
                 responseType: 'json'
             }).then(function (response) {
                 console.log(response);
+                var num = _this2.state.testVar;
+                num++;
                 _this2.setState({
                     response: response.data.test1,
+                    testVar: num,
                     loading: false
                 });
             }).catch(function (error) {
@@ -41605,7 +41621,7 @@ var Main = function (_Component) {
                     {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 59
+                            lineNumber: 76
                         }
                     },
                     this.state.response
@@ -41615,7 +41631,7 @@ var Main = function (_Component) {
                 'div',
                 { className: 'container', __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 62
+                        lineNumber: 79
                     }
                 },
                 _react2.default.createElement(
@@ -41623,7 +41639,7 @@ var Main = function (_Component) {
                     {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 63
+                            lineNumber: 80
                         }
                     },
                     _react2.default.createElement(
@@ -41631,7 +41647,7 @@ var Main = function (_Component) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 64
+                                lineNumber: 81
                             }
                         },
                         _react2.default.createElement(
@@ -41639,116 +41655,107 @@ var Main = function (_Component) {
                             {
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 65
+                                    lineNumber: 82
                                 }
                             },
                             _react2.default.createElement(
                                 'div',
                                 { className: 'card-header', __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 66
+                                        lineNumber: 83
                                     }
                                 },
-                                _react2.default.createElement('i', { className: 'fas fa-ad', __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 67
-                                    }
-                                }),
-                                'Example Component'
+                                _react2.default.createElement(
+                                    'h1',
+                                    { className: 'title is-1', __source: {
+                                            fileName: _jsxFileName,
+                                            lineNumber: 84
+                                        }
+                                    },
+                                    'LiteBrite'
+                                )
                             ),
                             _react2.default.createElement(
                                 'div',
                                 { className: 'card-body', __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 70
-                                    }
-                                },
-                                'I\'m an example component!'
-                            ),
-                            _react2.default.createElement(
-                                _form.Field,
-                                {
-                                    __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 74
+                                        lineNumber: 87
                                     }
                                 },
                                 _react2.default.createElement(
-                                    _form.Label,
-                                    {
-                                        __source: {
+                                    'h2',
+                                    { className: 'subtitle is-4', __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 75
+                                            lineNumber: 88
                                         }
                                     },
-                                    'Name'
-                                ),
-                                _react2.default.createElement(
-                                    _form.Control,
-                                    {
-                                        __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 76
-                                        }
-                                    },
-                                    _react2.default.createElement(_form.Input, { placeholder: 'Text input', __source: {
-                                            fileName: _jsxFileName,
-                                            lineNumber: 77
-                                        }
-                                    })
+                                    'Upload a file and we\'ll put it up on the LiteBrite ',
+                                    this.state.testVar
                                 )
                             ),
                             _react2.default.createElement(
-                                _form.Field,
-                                { kind: 'group', __source: {
+                                'div',
+                                { className: 'file has-name is-fullwidth', __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 81
+                                        lineNumber: 90
                                     }
                                 },
                                 _react2.default.createElement(
-                                    _form.Control,
-                                    {
-                                        __source: {
+                                    'label',
+                                    { className: 'file-label', __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 82
+                                            lineNumber: 91
                                         }
                                     },
-                                    _react2.default.createElement(
-                                        _button2.default,
-                                        { type: 'primary', __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 83
-                                            }
-                                        },
-                                        'Submit'
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    _form.Control,
-                                    {
-                                        __source: {
+                                    _react2.default.createElement('input', { className: 'file-input', type: 'file', name: 'resume', __source: {
                                             fileName: _jsxFileName,
-                                            lineNumber: 85
+                                            lineNumber: 92
                                         }
-                                    },
+                                    }),
                                     _react2.default.createElement(
-                                        _button2.default,
-                                        { color: 'link', __source: {
+                                        'span',
+                                        { className: 'file-cta', __source: {
                                                 fileName: _jsxFileName,
-                                                lineNumber: 86
+                                                lineNumber: 93
                                             }
                                         },
-                                        'Cancel'
+                                        _react2.default.createElement(
+                                            'span',
+                                            { className: 'file-icon', __source: {
+                                                    fileName: _jsxFileName,
+                                                    lineNumber: 94
+                                                }
+                                            },
+                                            _react2.default.createElement('i', { className: 'fas fa-upload', __source: {
+                                                    fileName: _jsxFileName,
+                                                    lineNumber: 95
+                                                }
+                                            })
+                                        ),
+                                        _react2.default.createElement(
+                                            'span',
+                                            { className: 'file-label', __source: {
+                                                    fileName: _jsxFileName,
+                                                    lineNumber: 97
+                                                }
+                                            },
+                                            'Choose a file\u2026'
+                                        ),
+                                        _react2.default.createElement('span', { className: 'file-name', __source: {
+                                                fileName: _jsxFileName,
+                                                lineNumber: 100
+                                            }
+                                        })
                                     )
                                 )
                             ),
                             _react2.default.createElement(
                                 _button2.default,
-                                { onClick: function onClick() {
+                                { type: 'submit', onClick: function onClick() {
                                         return _this3.testConnect();
                                     }, __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 90
+                                        lineNumber: 106
                                     }
                                 },
                                 'Submit'
