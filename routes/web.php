@@ -14,7 +14,9 @@
 // Getters
 Route::get('/','liteBrite@index');
 Route::get('/config','liteBrite@getConfig');
+Route::get('/entries','liteBrite@entries');
 
 // Setters
 Route::post('/config','liteBrite@setConfig');
 Route::post('/store','liteBrite@store');
+Route::post('/upload','liteBrite@upload');

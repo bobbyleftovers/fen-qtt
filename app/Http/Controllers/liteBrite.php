@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
+use \App\Services\AverageColorTool;
+use Ixudra\Curl\Facades\Curl;
+use App\LiteBriteImage;
+use CurlFile;
 
 class liteBrite extends Controller
 {
@@ -16,6 +20,13 @@ class liteBrite extends Controller
     public function index()
     {
         return view('main');
+    }
+
+    public function entries(){
+        // get submissions
+        $items = LiteBriteImage::all()
+        ->toArray();
+        return $items;
     }
 
     /**
@@ -35,9 +46,34 @@ class liteBrite extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        // 
-        return response()->json($request);
+    {   
+        if($request->get('file')){
+
+            $image = $request->get('file');
+            $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+            \Image::make($request->get('file'))->save(public_path('images/').$name);
+            $new_image = '/Users/robertrae/Sites/Enjoy/fen-qtt-server/public/images/'.$name;
+        
+        }
+        
+        return response()->json(['path' => $new_image, 'name' => $name]);
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function upload(Request $request)
+    {   
+        $response = Curl::to($request->get('url'))
+        ->withFile( 'file', $request->get('path'), 'image/png', 'imageName1.png' )
+        ->withData( array( 'test' => 'Bar' ) )
+        ->post();
+
+        return response()->json([$request->get('path'),$response]);
     }
 
     /**
