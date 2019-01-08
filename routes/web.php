@@ -11,12 +11,27 @@
 |
 */
 
-// Getters
-Route::get('/','liteBrite@index');
-Route::get('/config','liteBrite@getConfig');
-Route::get('/entries','liteBrite@entries');
+// testing
+Route::get('/testimg','LiteBrite@start_php');
 
-// Setters
-Route::post('/config','liteBrite@setConfig');
-Route::post('/store','liteBrite@store');
-Route::post('/upload','liteBrite@upload');
+// Litebrite front-end pages
+Route::get('/','LiteBrite@index');
+Route::get('/submissions','LiteBrite@entries');
+Route::get('/submissions/{id}','LiteBrite@show');
+
+// LiteBrite front-end setters
+Route::post('/store','LiteBrite@store');
+Route::post('/update/{id}','LiteBrite@update');
+Route::post('/upload','LiteBrite@upload');
+Route::post('/delete/{id}','LiteBrite@destroy');
+
+// lb admin pages
+Route::get('/config','LiteBriteConfig@index');
+Route::get('/config/{id}','LiteBriteConfig@show');
+Route::get('/config/all','LiteBriteConfig@all');
+
+// lb config setters
+Route::post('/config/store','LiteBriteConfig@store');
+Route::post('/config/store/{id}','LiteBriteConfig@update');
+Route::post('/config/delete/{id}','LiteBriteConfig@destroy');
+

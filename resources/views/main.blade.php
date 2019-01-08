@@ -4,5 +4,4 @@
 
         <div id="app"></div>
 
-
 @endsection

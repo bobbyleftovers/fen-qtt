@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use \App\Models\Content;
+use Intervention\Image;
 
 class AverageColorTool {
 
@@ -93,9 +94,11 @@ class AverageColorTool {
 			$this->scanLine( $height, $width, 'x', $line);
 			$this->totalColors();
 		}
-		dump($width,$height);
 		$count = $width * $height;
 		$this->averageTotal($count);
+
+		// returns rgb array
+		return $this->average;
 	}
 
 }
