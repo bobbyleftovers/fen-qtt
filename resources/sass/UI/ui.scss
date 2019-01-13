@@ -1,0 +1,43 @@
+// .loading{
+//     position: absolute;
+//     top: 0px;
+//     bottom: 0px;
+//     left: 0px;
+//     right: 0px;
+//     z-index:999;
+//     display:flex;
+//     justify-content:center;
+//     align-items:center;
+//     background:rgba(255,255,255,0.75);
+//     transition:all 0.7s ease;
+//     .loader{
+//         border-color:#777;
+//         border-right-color: transparent;
+//     }
+//     &.remove{
+//         opacity:0;
+//     }
+//     &.removed{
+//         display: none;
+//     }
+// }
+.box .loading{
+    border-radius:6px;
+}
+.example-enter {
+    opacity: 0.01;
+  }
+  
+  .example-enter.example-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+  
+  .example-leave {
+    opacity: 1;
+  }
+  
+  .example-leave.example-leave-active {
+    opacity: 0.01;
+    transition: opacity 300ms ease-in;
+  }

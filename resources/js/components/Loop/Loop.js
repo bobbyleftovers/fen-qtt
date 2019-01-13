@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 
 import Columns from 'react-bulma-components/lib/components/columns';
 import LoopItem from './LoopItem';

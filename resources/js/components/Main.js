@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { Route,withRouter } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
-import Uploader from './Uploader';
-import Loop from './Loop/Loop';
-import Columns from 'react-bulma-components/lib/components/columns';
-import Box from 'react-bulma-components/lib/components/box';
+import Home from './Home/Home';
+import Config from './Config/Config';
+import SubmissionMain from './Submissions/SubmissionMain';
+import Container from 'react-bulma-components/lib/components/container';
 
 class Main extends Component {
     constructor(props) {
@@ -21,39 +20,12 @@ class Main extends Component {
             responseText = <p>{this.state.response}</p>
         }
         return (
-            <div className="container">
-                <Route path="/" exact render={ () => {
-                    return(
-                        <div>
-                            <Columns>
-                                <Columns.Column>
-                                    <Box>
-                                        <div className="card-header">
-                                            <h1 className="title is-1">LiteBrite</h1>
-                                        </div>
-
-                                        <div className="card-body">
-                                            <h2 className="subtitle is-4">Upload a file and we'll put it up on the LiteBrite</h2>
-                                        </div>
-                                        <Uploader />
-                                    </Box>
-                                    {responseText}
-                                </Columns.Column>
-                            </Columns>
-                            <hr />
-                            <div>
-                                <h2 className="subtitle is-2">Uploads</h2>
-                                <Loop className="columns"/>
-                            </div>
-                        </div>
-                    )
-                }}/>
-                <Route path="/submissions/:id" render={(id) => {
-                    return(
-                        <p>ID is: {id}</p>
-                    )
-                }} />
-            </div>
+            <Container>
+                <Route path="/" exact component={Home}/>
+                <Route path="/config" exact component={Config}/>
+                <Route path="/config/:id" component={Config}/>
+                <Route path="/submissions/:id" component={SubmissionMain} />
+            </Container>
         );
     }
 }
