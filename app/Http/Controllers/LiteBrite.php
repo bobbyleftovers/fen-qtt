@@ -9,6 +9,7 @@ use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use \App\Services\AverageColorTool;
 use Ixudra\Curl\Facades\Curl;
+use Illuminate\Support\Facades\Log;
 use CurlFile;
 use Image;
 
@@ -63,10 +64,19 @@ class LiteBrite extends Controller
             $liteBrite = new LiteBriteImages;
             $liteBrite->config_id = $config->id;
             $liteBrite->filename = $name;
+            $literite->json_status = 'pending';
             $liteBrite->save();
-            $liteBrite->update([
-                'image_json' =>  json_encode($this->calculate($liteBrite,$config))
-            ]);
+
+            
+            // $liteBrite->update([
+            //     'image_json' =>  json_encode($this->calculate($liteBrite,$config))
+            // ]);
+
+            // Emit json event
+            //
+
+            // Log it out 
+            Log::notice('LiteBrite entry created:'.$liteBrite->id.', JSON pending. Config ID is '.$config->id);
             
             return response()->json(['filename' => $name, 'imageData' => $liteBrite->image_json]);
         }
@@ -140,11 +150,27 @@ class LiteBrite extends Controller
         
         $liteBrite = LiteBriteImages::where('id',$request->get('id'))
             ->first();
-        return response()->json($this->calculate($liteBrite,$config));
-        $liteBrite->update([
-            'image_json' =>  json_encode($this->calculate($liteBrite,$config))
-        ]);
+
+        LiteBriteImages::where('id',$request->get('id'))
+            ->update([
+                'config_id' => $config->id,
+                'json_status' => 'pending'
+                // 'image_json' =>  json_encode($this->calculate($liteBrite,$config))
+            ]);
+
+        // start the rebuild process if needed and emit json event
+        //
+
+        // Log it out 
+        Log::info('LiteBrite entry updated:'.$liteBrite->id.', JSON pending. Config ID is '.$config->id);
+
         return response()->json($liteBrite);
+    }
+
+    // Update the user on wether the json build has finished
+    public function check_json_status($request){
+        $liteBrite = LiteBriteImages::where('id', $request->get('id'))->first();
+        return response()->json($liteBrite->json_finished); // not tested yet
     }
 
     /**
@@ -168,6 +194,7 @@ class LiteBrite extends Controller
         
         // open file a image resource
         $img = Image::make('images/'.$liteBrite->filename);
+        
         $img->backup();
 
         // dimensions
@@ -233,7 +260,7 @@ class LiteBrite extends Controller
                 $ypos = $ysliceheight * $yslice;
 
                 // store data to array
-                $image_data['values'][$xslice][$yslice] = $value;
+                $image_data['values'][$xslice][] = $value;
 
             }
 

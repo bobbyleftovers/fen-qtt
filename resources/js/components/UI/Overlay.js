@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import Loader from 'react-bulma-components/lib/components/loader';
 
-
-const Loading = function(props){
+const Overlay = function(props){
 
     const loader = document.querySelector('.loading');
     
@@ -30,4 +28,4 @@ const Loading = function(props){
     // );
 }
 
-export default Loading;
+export default Overlay;

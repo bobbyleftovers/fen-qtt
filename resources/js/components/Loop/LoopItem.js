@@ -4,7 +4,6 @@ import { NavLink,withRouter } from 'react-router-dom';
 class ProjectMenuItem extends Component {
 
 	render(){
-		console.log('entry',this.props.entry);
 		return(
 			<NavLink to={'/submissions/' + this.props.entry.id}>
 				<div className="collection-item">

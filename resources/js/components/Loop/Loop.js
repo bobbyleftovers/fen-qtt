@@ -15,7 +15,6 @@ class Loop extends Component{
     getItems(){
         axios.get('/submissions')
         .then(res => {
-            console.log('entires',res);
             this.setState({
                 entries:res.data
             });

@@ -12,12 +12,13 @@ class SubmissionMain extends Component{
         super(props);
         this.state = {
             config:null,
+            activeConfig:null,
             filename:'',
             image:null,
             imagetest:null,
             updating:false
         };
-        this.updateConfig = this.updateConfig.bind(this);
+        this.updateFromActiveConfig = this.updateFromActiveConfig.bind(this);
     }
 
     componentWillMount(){
@@ -25,16 +26,20 @@ class SubmissionMain extends Component{
         if(this.props.match.params.id){
             this.getImageData();
         }
+        this.getActiveConfig()
     }
 
-    updateConfig(){
+    updateFromActiveConfig(){
         console.log(this.props);
         this.setState({updating:true})
         axios.post('/update/' + this.props.match.params.id,{id:this.props.match.params.id})
             .then(res => {
                 console.log('ok',res.data);
                 
-                this.setState({updating:false,imagetest:res.data})
+                this.setState({
+                    updating:false,
+                    image:res.data
+                })
                 // this.getImageData();
             })
             .catch(error => {
@@ -77,7 +82,55 @@ class SubmissionMain extends Component{
             })
     }
 
-    recordAdjustments(){}
+    recordAdjustments(){
+        console.log('click');
+    }
+
+    getActiveConfig(){
+        axios.get('/active-config')
+        .then(res => {
+            console.log(res.data);
+            this.setState({activeConfig:res.data})
+        })
+        .catch(error => {
+            // log out the error
+            let message = `ERROR: `;
+
+            // loader
+            this.tableLoading = false;
+
+            // Error
+            if (error.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                message += error.response.status + `; ` + error.response.data.message;
+                console.log(error.response.data);
+                console.log(error.response.status);
+                console.log(error.response.headers);
+
+            } else if (error.request) {
+                // The request was made but no response was received
+                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                // http.ClientRequest in node.js
+                message += error.request;
+                console.log(error.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                message += error.message;
+                console.log('ERROR:', error.message);
+            }
+            console.log('ERROR CONFIG:',error.config);
+            message += ` (see console)`;
+
+            // Show toast with error message
+            // this.$toast.open({
+            //     duration: 5000,
+            //     message: message,
+            //     position: 'is-bottom',
+            //     type: 'is-danger'
+            // });
+        })
+    }
 
     getImageData(){
         axios.post('/get-image',{id:this.props.match.params.id})
@@ -134,11 +187,14 @@ class SubmissionMain extends Component{
         if(this.state.image && this.state.config){
             grid = <Grid map={this.state.image} config={this.state.config}/>
         }
+        let updater = null;
         return (
             <div>
                 <pre>
                     <code>
                         {JSON.stringify(this.state.config, null, 2)}
+                    </code><br/>
+                    <code>
                         {JSON.stringify(this.state.updating, null, 2)}
                     </code>
                 </pre>
@@ -155,8 +211,8 @@ class SubmissionMain extends Component{
                 <Columns>
                     <Columns.Column>
                         <Box>
-                            <Button onClick={this.updateConfig}>Update To Active Config</Button>
-                            <Button onClick={this.recordAdjustments}>Record Value Adjustments</Button>
+                            <Button onClick={this.updateFromActiveConfig}>Update To Active Config</Button>
+                            <Button onClick={this.recordAdjustments}>Record Image Adjustments</Button>
                         </Box>
                     </Columns.Column>
                 </Columns>

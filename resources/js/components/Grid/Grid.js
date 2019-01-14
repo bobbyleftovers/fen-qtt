@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Columns from 'react-bulma-components/lib/components/columns';
-// import Box from 'react-bulma-components/lib/components/box';
-// import Button from 'react-bulma-components/lib/components/button';
 
 const Grid = function(props){
-    // console.log('grid',props.map,props.config);
+    console.log('grid',props.map,props.config);
     let gridItems = false;
     if(props.map.values){
         gridItems = props.map.values.map((row,index) => {
@@ -21,7 +19,7 @@ const Grid = function(props){
                         height:cellH,
                         display:'flex',
                         justifyContent:'center'
-                    }}><div className="cell-level" style={{color:'rgb(' + textColor + ',' + textColor + ',' + textColor + ')'}}>{cell.dimmer}</div></div>
+                    }}><div className="dimmer-level" style={{color:'rgb(' + textColor + ',' + textColor + ',' + textColor + ')'}}>{cell.dimmer}</div></div>
                 );
             })
             // console.log('items',colItems);

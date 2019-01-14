@@ -32,6 +32,7 @@ Route::get('/config/{id}','LiteBriteConfigController@index');
 Route::get('/config/all','LiteBriteConfigController@all');
 
 // lb config setters
+Route::get('/active-config','LiteBriteConfigController@getActiveConfig');
 Route::post('/get-config','LiteBriteConfigController@getConfig');
 Route::post('/config/store','LiteBriteConfigController@store');
 Route::post('/config/store/{id}','LiteBriteConfigController@update');

@@ -41,6 +41,13 @@ class LiteBriteConfigController extends Controller
         return response()->json($config);
     }
 
+    public function getActiveConfig()
+    {   
+        $config = LiteBriteConfig::where('is_active',1)
+        ->first();
+        return response()->json($config);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
