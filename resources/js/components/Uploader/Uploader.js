@@ -125,12 +125,12 @@ export default class Uploader extends Component
                 console.log('ERROR CONFIG:',error.config);
                 message += ` (see console)`;
                 // Show toast with error message
-                this.$toast.open({
-                    duration: 5000,
-                    message: message,
-                    position: 'is-bottom',
-                    type: 'is-danger'
-                });
+                // this.$toast.open({
+                //     duration: 5000,
+                //     message: message,
+                //     position: 'is-bottom',
+                //     type: 'is-danger'
+                // });
             })
     }
     
@@ -175,12 +175,12 @@ export default class Uploader extends Component
                 console.log('ERROR CONFIG:',error.config);
                 message += ` (see console)`;
                 // Show toast with error message
-                this.$toast.open({
-                    duration: 5000,
-                    message: message,
-                    position: 'is-bottom',
-                    type: 'is-danger'
-                });
+                // this.$toast.open({
+                //     duration: 5000,
+                //     message: message,
+                //     position: 'is-bottom',
+                //     type: 'is-danger'
+                // });
             })
     }
 

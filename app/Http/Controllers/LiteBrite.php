@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\LiteBriteImages;
 use App\Models\LiteBriteConfig;
+use App\Events\ImageAdded;
 use Illuminate\Http\Request;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
-use \App\Services\AverageColorTool;
+use \App\Services\LiteBriteTools;
 use Ixudra\Curl\Facades\Curl;
 use Illuminate\Support\Facades\Log;
 use CurlFile;
@@ -64,21 +65,34 @@ class LiteBrite extends Controller
             $liteBrite = new LiteBriteImages;
             $liteBrite->config_id = $config->id;
             $liteBrite->filename = $name;
-            $literite->json_status = 'pending';
+            $liteBrite->json_status = 'pending';
+            // move this to store method and create new columns, json should only be for the values
+            // $image_data['image'] = [
+            //     'id' => $liteBrite->id,
+            //     'config_id' => $config->id,
+            //     'width' => $width,
+            //     'height' => $height,
+            //     'cellHeight' => $ysliceheight,
+            //     'cellWidth' => $xslicewidth
+            // ];
             $liteBrite->save();
+
+
 
             
             // $liteBrite->update([
             //     'image_json' =>  json_encode($this->calculate($liteBrite,$config))
             // ]);
 
-            // Emit json event
-            //
-
             // Log it out 
-            Log::notice('LiteBrite entry created:'.$liteBrite->id.', JSON pending. Config ID is '.$config->id);
+            Log::notice('LiteBrite entry created: '.$liteBrite->id.', JSON pending. Config ID is '.$config->id);
+
+            // Emit json event
+            event(new ImageAdded($liteBrite));
+
             
-            return response()->json(['filename' => $name, 'imageData' => $liteBrite->image_json]);
+            
+            return response()->json($liteBrite);
         }
         return false;
 
@@ -150,19 +164,27 @@ class LiteBrite extends Controller
         
         $liteBrite = LiteBriteImages::where('id',$request->get('id'))
             ->first();
-
+        // $image_data['image'] = [
+        //     'id' => $liteBrite->id,
+        //     'config_id' => $config->id,
+        //     'width' => $width,
+        //     'height' => $height,
+        //     'cellHeight' => $ysliceheight,
+        //     'cellWidth' => $xslicewidth
+        // ];
+        $lb = new LiteBriteTools($liteBrite,$config);
         LiteBriteImages::where('id',$request->get('id'))
             ->update([
                 'config_id' => $config->id,
-                'json_status' => 'pending'
-                // 'image_json' =>  json_encode($this->calculate($liteBrite,$config))
+                'json_status' => 'pending',
+                'image_json' =>  json_encode($lb->calculate())
             ]);
-
-        // start the rebuild process if needed and emit json event
-        //
 
         // Log it out 
         Log::info('LiteBrite entry updated:'.$liteBrite->id.', JSON pending. Config ID is '.$config->id);
+
+        // start the rebuild process if needed and emit json event
+        // event(new ImageAdded($liteBrite));
 
         return response()->json($liteBrite);
     }
@@ -170,7 +192,7 @@ class LiteBrite extends Controller
     // Update the user on wether the json build has finished
     public function check_json_status($request){
         $liteBrite = LiteBriteImages::where('id', $request->get('id'))->first();
-        return response()->json($liteBrite->json_finished); // not tested yet
+        return response()->json($liteBrite->json_status); // not tested yet
     }
 
     /**
@@ -186,98 +208,97 @@ class LiteBrite extends Controller
 
     // UTILITIES
 
-    public function calculate($liteBrite,$config){
+    // public function calculate(LiteBriteImages $liteBrite, LiteBriteConfig $config){
         
-        // set up an object to collect data from this process
-        $image_data = [];
-        $pathinfo = pathinfo('images'.$liteBrite->filename);
+    //     // set up an object to collect data from this process
+    //     $image_data = [];
+    //     $pathinfo = pathinfo('images'.$liteBrite->filename);
         
-        // open file a image resource
-        $img = Image::make('images/'.$liteBrite->filename);
+    //     // open file a image resource
+    //     $img = Image::make('images/'.$liteBrite->filename);
         
-        $img->backup();
+    //     $img->backup();
 
-        // dimensions
-        $width = $img->width();
-        $height = $img->height();
-        $rows = $config->rows;
-        $columns = $config->columns;
+    //     // dimensions
+    //     $width = $img->width();
+    //     $height = $img->height();
+    //     $rows = $config->rows;
+    //     $columns = $config->columns;
+    //     $aspect_ratio = $rows/$columns;
 
-        // crop start pos.
-        $xpos = 0;
-        $ypos = 0;
+    //     // crop the image to match the grids aspect ratio
+    //     // $img->crop($xslicewidth, $ysliceheight, $xpos, $ypos);
 
-        // current slice indeces
-        $xslice = 0;
-        $yslice = 0;
+    //     // crop start pos.
+    //     $xpos = 0;
+    //     $ypos = 0;
 
-        // set crop size
-        $xslicewidth = (int)round($width/$rows,0,PHP_ROUND_HALF_UP);
-        $ysliceheight = (int)round($height/$columns,0,PHP_ROUND_HALF_UP);
+    //     // current slice indeces
+    //     $xslice = 0;
+    //     $yslice = 0;
 
-        $image_data['image'] = [
-            'id' => $liteBrite->id,
-            'config_id' => $config->id,
-            'width' => $width,
-            'height' => $height,
-            'cellHeight' => $ysliceheight,
-            'cellWidth' => $xslicewidth
-        ];
+    //     // set crop size
+    //     $xslicewidth = (int)round($width/$rows,0,PHP_ROUND_HALF_UP);
+    //     $ysliceheight = (int)round($height/$columns,0,PHP_ROUND_HALF_UP);
 
-        while($xpos <= ($width - $xslicewidth)){
-            while($ypos <= ($height - $ysliceheight)){
+    //     // move this to store method and create new columns, json should only be for the values
+    //     $image_data['image'] = [
+    //         'id' => $liteBrite->id,
+    //         'config_id' => $config->id,
+    //         'width' => $width,
+    //         'height' => $height,
+    //         'cellHeight' => $ysliceheight,
+    //         'cellWidth' => $xslicewidth
+    //     ];
+
+    //     while($xpos <= ($width - $xslicewidth)){
+    //         while($ypos <= ($height - $ysliceheight)){
                 
-                // we'll be storing the data in here
-                $value = [];
-                $filepath = 'images/'.$pathinfo['filename'].'-'.$xpos.'-'.$ypos.'.jpg';
+    //             // we'll be storing the data in here
+    //             $value = [];
+    //             $filepath = 'images/'.$pathinfo['filename'].'-'.$xpos.'-'.$ypos.'.jpg';
 
-                // crop image
-                $img->crop($xslicewidth, $ysliceheight, $xpos, $ypos);
-                $img->save($filepath);
+    //             // crop image
+    //             $img->crop($xslicewidth, $ysliceheight, $xpos, $ypos); // get rid of this
+    //             $img->save($filepath);
                 
-                // get average color
-                $src = imagecreatefromjpeg($filepath);
+    //             // get average color
+    //             $src = imagecreatefromjpeg($filepath);
 
-                // Greyscale operation
-                imagecopymergegray($src, $src, 0, 0, 0, 0, imagesx($src), imagesy($src), 0);
+    //             // Greyscale operation
+    //             imagecopymergegray($src, $src, 0, 0, 0, 0, imagesx($src), imagesy($src), 0);
                 
-                $avgImage = new AverageColorTool('',$src);
-                $rgb = $avgImage->averageImage();
-                $value = [
-                    'x' => $xslice,
-                    'y' => $yslice,
-                    'rgb' => $rgb,
-                    'grey'=> $rgb['red'],
-                    'dimmer' => $this->setDimmerLevel($rgb['red'],$config)
-                ];
+    //             $avgImage = new AverageColorTool('',$src);
+    //             $rgb = $avgImage->averageImage();
+    //             $value = [
+    //                 'x' => $xslice,
+    //                 'y' => $yslice,
+    //                 'rgb' => $rgb,
+    //                 'grey'=> $rgb['red'],
+    //                 'dimmer' => $this->setDimmerLevel($rgb['red'],$config)
+    //             ];
 
-                // get rid of the extra file
-                unlink($filepath);
+    //             // get rid of the extra file
+    //             unlink($filepath);
 
-                // reset, increment Y variables
-                $img->reset();
-                $yslice++;
-                $ypos = $ysliceheight * $yslice;
+    //             // reset, increment Y variables
+    //             $img->reset();
+    //             $yslice++;
+    //             $ypos = $ysliceheight * $yslice;
 
-                // store data to array
-                $image_data['values'][$xslice][] = $value;
+    //             // store data to array
+    //             $image_data['values'][$xslice][] = $value;
 
-            }
+    //         }
 
-            // reset, increment X variables
-            $ypos = $yslice = 0;
-            $xslice++;
-            $xpos = $xslicewidth * $xslice;
-        }
+    //         // reset, increment X variables
+    //         $ypos = $yslice = 0;
+    //         $xslice++;
+    //         $xpos = $xslicewidth * $xslice;
+    //     }
 
-        return $image_data;
-    }
-
-    // Translates a numeric value to correspond to the available dimmer levels
-    public function setDimmerLevel($value,$config){
-        $interval = 255/$config->dimmer_levels;
-        return (int)round($value/$interval,0,PHP_ROUND_HALF_UP);
-    }
+    //     return $image_data;
+    // }
 
     public function start_php()
     {
@@ -293,31 +314,5 @@ class LiteBrite extends Controller
 
     }
 
-    /**
-     * Copy an image
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function avgColor($source)
-    {
-        dump($source);
-        $i = imagecreatefromjpeg($source);
-        for ($x=0;$x<imagesx($i);$x++) {
-            for ($y=0;$y<imagesy($i);$y++) {
-                $rgb = imagecolorat($i,$x,$y);
-                $r   = ($rgb >> 16) & 0xFF;
-                $g   = $rgb & 0xFF;
-                $b   = $rgb & 0xFF;
-                $rTotal += $r;
-                $gTotal += $g;
-                $bTotal += $b;
-                $total++;
-            }
-        }
-        $rAverage = round($rTotal/$total);
-        $gAverage = round($gTotal/$total);
-        $bAverage = round($bTotal/$total);
-        return $data;
-    }
+    
 }

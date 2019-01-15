@@ -66994,12 +66994,12 @@ var Uploader = function (_Component) {
                 console.log('ERROR CONFIG:', error.config);
                 message += ' (see console)';
                 // Show toast with error message
-                _this3.$toast.open({
-                    duration: 5000,
-                    message: message,
-                    position: 'is-bottom',
-                    type: 'is-danger'
-                });
+                // this.$toast.open({
+                //     duration: 5000,
+                //     message: message,
+                //     position: 'is-bottom',
+                //     type: 'is-danger'
+                // });
             });
         }
     }, {
@@ -67044,12 +67044,12 @@ var Uploader = function (_Component) {
                 console.log('ERROR CONFIG:', error.config);
                 message += ' (see console)';
                 // Show toast with error message
-                _this4.$toast.open({
-                    duration: 5000,
-                    message: message,
-                    position: 'is-bottom',
-                    type: 'is-danger'
-                });
+                // this.$toast.open({
+                //     duration: 5000,
+                //     message: message,
+                //     position: 'is-bottom',
+                //     type: 'is-danger'
+                // });
             });
         }
     }, {
