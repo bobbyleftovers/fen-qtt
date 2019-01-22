@@ -36,14 +36,6 @@ export default class Uploader extends Component
             errorMsg: null
         });
 
-        if(file.size > 2000000 ){
-            this.setState({
-                isError: true,
-                errorMsg: 'File must be 2MB or less'
-            });
-            return;
-        }
-
         if(accepted.indexOf(file.type) < 0){
             this.setState({
                 isError: true,
@@ -206,7 +198,7 @@ export default class Uploader extends Component
                 <div className="file has-name is-fullwidth">
                     
                     <label className="file-label">
-                        <input className="file-input" type="file" name="resume" value={this.state.file} onChange={this.onChange}/>
+                        <input className="file-input" type="file" name="file" value={this.state.file} onChange={this.onChange}/>
                         <span className="file-cta">
                             <span className="file-icon">
                                 <i className="fas fa-upload"></i>

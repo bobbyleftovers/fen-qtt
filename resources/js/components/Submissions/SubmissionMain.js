@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Columns from 'react-bulma-components/lib/components/columns';
 import Box from 'react-bulma-components/lib/components/box';
 import Button from 'react-bulma-components/lib/components/button';
+import Loading from '../UI/Loading';
 
 import Grid from '../Grid/Grid';
 
@@ -22,7 +23,7 @@ class SubmissionMain extends Component{
     }
 
     componentWillMount(){
-        console.log(this.props.match.params.id);
+        console.log('image id',this.props.match.params.id);
         if(this.props.match.params.id){
             this.getImageData();
         }
@@ -30,7 +31,7 @@ class SubmissionMain extends Component{
     }
 
     updateFromActiveConfig(){
-        console.log(this.props);
+        console.log('props',this.props);
         this.setState({updating:true})
         axios.post('/update/' + this.props.match.params.id,{id:this.props.match.params.id})
             .then(res => {
@@ -89,7 +90,7 @@ class SubmissionMain extends Component{
     getActiveConfig(){
         axios.get('/active-config')
         .then(res => {
-            console.log(res.data);
+            console.log('active',res.data);
             this.setState({activeConfig:res.data})
         })
         .catch(error => {
@@ -137,7 +138,7 @@ class SubmissionMain extends Component{
         .then(res => {
             this.setState({
                 config:res.data.config,
-                filename:res.data.filename,
+                filename:res.data.cropped_image,
                 image:JSON.parse(res.data.image_json)
             });
             // console.log(this.state);
@@ -200,7 +201,7 @@ class SubmissionMain extends Component{
                 </pre>
                 <Columns>
                     <Columns.Column>
-                        <img src={'/images/' + this.state.filename} className="column" style={{width:'100%'}}/>
+                        <img src={'/' + this.state.filename} className="column" style={{width:'100%'}}/>
                     </Columns.Column>
                     <Columns.Column>
                         <div className="grid-wrap">

@@ -41,7 +41,7 @@ return [
 
         'single' => [
             'driver' => 'single',
-            'path' => storage_path('logs/laravel.log'),
+            'path' => storage_path('logs/lite-brite.log'),
             'level' => 'debug',
         ],
 
@@ -57,7 +57,7 @@ return [
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
             'username' => 'Laravel Log',
             'emoji' => ':poop:',
-            'level' => 'notice',
+            'level' => 'debug',
         ],
 
         'papertrail' => [

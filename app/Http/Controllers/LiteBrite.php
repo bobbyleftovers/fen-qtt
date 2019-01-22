@@ -56,33 +56,29 @@ class LiteBrite extends Controller
         $config = LiteBriteConfig::where('is_active',1)
             ->first();
 
+        // make sure we have a file
         if($request->get('file')){
-            $info = $request->get('info');
-            $image = $request->get('file');
-            $name = $info['full_name'];
-            \Image::make($request->get('file'))->save(public_path('images/').$name);
 
+            // save the image using intervention/image
+            $info = $request->get('info');;
+            $name = $info['full_name'];
+            $upload = Image::make($request->get('file'));
+            $upload->resize(600, 600, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save(public_path('images/'.$name));
+            $saved_image_uri = $upload->dirname.'/'.$upload->basename;
+            $path = Storage::putFileAs('submissions', new File($saved_image_uri),$name);
+            
+            // set up the liteBrite entry and save
             $liteBrite = new LiteBriteImages;
             $liteBrite->config_id = $config->id;
-            $liteBrite->filename = $name;
-            $liteBrite->json_status = 'pending';
-            // move this to store method and create new columns, json should only be for the values
-            // $image_data['image'] = [
-            //     'id' => $liteBrite->id,
-            //     'config_id' => $config->id,
-            //     'width' => $width,
-            //     'height' => $height,
-            //     'cellHeight' => $ysliceheight,
-            //     'cellWidth' => $xslicewidth
-            // ];
+            $liteBrite->filename = $info['name'];
+            $liteBrite->original_path = $path;
             $liteBrite->save();
 
-
-
-            
-            // $liteBrite->update([
-            //     'image_json' =>  json_encode($this->calculate($liteBrite,$config))
-            // ]);
+            // clean up intervention stuff
+            $upload->destroy();
+            unlink($saved_image_uri);
 
             // Log it out 
             Log::notice('LiteBrite entry created: '.$liteBrite->id.', JSON pending. Config ID is '.$config->id);
@@ -90,10 +86,10 @@ class LiteBrite extends Controller
             // Emit json event
             event(new ImageAdded($liteBrite));
 
-            
-            
             return response()->json($liteBrite);
         }
+
+        // if no file, return false
         return false;
 
     }
@@ -173,20 +169,23 @@ class LiteBrite extends Controller
         //     'cellWidth' => $xslicewidth
         // ];
         $lb = new LiteBriteTools($liteBrite,$config);
-        LiteBriteImages::where('id',$request->get('id'))
-            ->update([
-                'config_id' => $config->id,
-                'json_status' => 'pending',
-                'image_json' =>  json_encode($lb->calculate())
-            ]);
+        // LiteBriteImages::where('id',$request->get('id'))
+        //     ->update([
+        //         'config_id' => $config->id,
+        //         'json_status' => 'pending',
+        //         'image_json' =>  json_encode($lb->calculateSegments())
+        //     ]);
+
+        
 
         // Log it out 
-        Log::info('LiteBrite entry updated:'.$liteBrite->id.', JSON pending. Config ID is '.$config->id);
+        // Log::info('LiteBrite entry updated:'.$liteBrite->id.', JSON pending. Config ID is '.$config->id);
 
         // start the rebuild process if needed and emit json event
         // event(new ImageAdded($liteBrite));
-
-        return response()->json($liteBrite);
+        $segments = $lb->calculateSegments();
+        $lb->cleanup();
+        return response()->json($segments);
     }
 
     // Update the user on wether the json build has finished

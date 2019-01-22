@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 use App\Models\LiteBriteImages;
 use App\Models\LiteBriteConfig;
-use \App\Services\LiteBriteTools;
+use App\Services\LiteBriteTools;
 
 class ImageConversion extends Command
 {
@@ -15,7 +15,7 @@ class ImageConversion extends Command
      *
      * @var string
      */
-    protected $signature = 'image:convert';
+    protected $signature = 'image:convert {submission}';
 
     /**
      * The console command description.
@@ -41,9 +41,23 @@ class ImageConversion extends Command
      */
     public function handle()
     {
-        // $name = $this->ask('What is your name?');
-        $this->info('Running conversion...');
-        Log::notice('Running image conversion');
+        $id = (int) $this->argument('submission');
+        $liteBrite = LiteBriteImages::where('id',$id)
+            ->first();
+        $config = LiteBriteConfig::where('id',$liteBrite->config_id)
+            ->first();
+        Log::notice('Running image conversion for '.$liteBrite->id. ' with config '.$config->id);
+        $this->info('Running image conversion for '.$liteBrite->id. ' with config '.$config->id);
         
+        // use lbTools to get the json data and update the entry
+        $lbTools = new LiteBriteTools($liteBrite->original_path,$config);
+        $lbTools->cropToGrid();
+        $liteBrite->update([
+            'image_json' => json_encode($lbTools->calculateSegments()),
+            'cropped_image' => $lbTools->cropPath,
+        ]);
+
+        $this->info($lbTools->getWidth().' x '.$lbTools->getHeight().' '.$lbTools->cropPath);
+        $lbTools->cleanup();
     }
 }

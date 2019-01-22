@@ -3,30 +3,36 @@ namespace App\Services;
 
 use App\Models\LiteBriteImages;
 use App\Models\LiteBriteConfig;
-use Intervention\Image;
+use Image;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 
 class LiteBriteTools {
 
-	function __construct(LiteBriteImages $liteBrite, LiteBriteConfig $config){
-		$this->liteBrite = $liteBrite;
+	function __construct($path, LiteBriteConfig $config){
 		$this->config = $config;
-		$this->image = Image::make('images/'.$liteBrite->filename); // the image we're using
-		$this->pathinfo = pathinfo('images'.$liteBrite->filename);
-		$this->config = $config;
-		$this->color = array(
+		$this->image = Image::make(Storage::get($path));
+		$this->pathinfo = pathinfo($path);
+		$this->notice = true;
+		$this->croppedImage = null;
+		$this->cropPath = '';
+		$this->average = [];
+		$this->color = [
 			'red' => 0,
 			'green' => 0,
 			'blue' => 0
-		);
-		// the current color
-		$this->colors = array(
-			'red' => array(),
-			'green' => array(),
-			'blue' => array()
-		); // the sum total of all rgb channels
-		$this->count = 0; // tracked throughout and used to find the average of all added rgb totals
-		$this->average = array(); // the final average color to return
-
+		];
+		$this->colors = [
+			'red' => [],
+			'green' => [],
+			'blue' => []
+		];
+		$this->average = [
+			'red' => 0,
+			'green' => 0,
+			'blue' => 0
+		];
 	}
 
 	// Width of $this->image
@@ -44,22 +50,84 @@ class LiteBriteTools {
 		return $this->getWidth() / $this->getHeight();
 	}
 
+	// Get the cell height
+	function getCellHeight(){
+        return (int)round($this->getHeight()/$this->config->columns,0,PHP_ROUND_HALF_UP);
+	}
+
+	// Get the cell width
+	function getCellWidth(){
+		return (int)round($this->getWidth()/$this->config->rows,0,PHP_ROUND_HALF_UP);
+	}
+
+	// Crop an image to the current configs aspect ratio and return a path to it
+	public function cropToGrid(){
+		$width = null;
+		$height = null;
+		
+		// set height or width, not both
+		($this->config->rows <= $this->config->columns) ? $height = $this->config->columns : $width = $this->config->rows;
+		
+		// scale image to grid
+		$sized = $this->image->resize($width, $height, function($constrain){
+			$constrain->aspectRatio();
+		});
+		
+		// crop canvas to grid constraints
+		$cropped = $this->image->resizeCanvas($this->config->rows, $this->config->columns, 'center')->save(public_path('images/'.$this->pathinfo['filename'].'.'.$this->pathinfo['extension']));
+		
+		// uri to temporary resource
+		$saved_image_uri = $cropped->dirname.'/'.$cropped->basename;
+		
+		// remove tem file
+		Log::warning('Cropped to aspect ratio: '.$this->cropPath.' '.$saved_image_uri);
+		
+		// add to storage with naming convention, set cropPath
+		$this->cropPath = Storage::putFileAs('submissions', new File($saved_image_uri),$this->pathinfo['filename'].'-config-'.$this->config->id.'.'.$this->pathinfo['extension']);
+		unlink($saved_image_uri);
+		
+		
+
+		return;
+	}
+
+	// Copy $this->image and convert to greyscale
+	public function setGreyscale(){
+		$this->image = $this->image->greyscale();
+	}
+
+	public function resetAverage(){
+		$this->average = [
+			'red' => 0,
+			'green' => 0,
+			'blue' => 0
+		];
+		$this->color = [
+			'red' => 0,
+			'green' => 0,
+			'blue' => 0
+		];
+		$this->colors = [
+			'red' => [],
+			'green' => [],
+			'blue' => []
+		];
+	}
+
 	// Iterate over sections of a complete image based on a $this->config.
 	public function calculateSegments(){
-        
         // set up an object to collect data from this process
-        $image_data = [];
-        
-        $this->image->backup();
+		$image_data = [];
+		
+		$this->croppedImage = Image::make(Storage::get($this->cropPath));
+		$this->croppedImage->backup();
+		
+		// Greyscale operation
+		$this->croppedImage->greyscale();
 
         // dimensions
-        $width = $this->getWidth();
-        $height = $this->getHeight();
-        $rows = $this->config->rows;
-        $columns = $this->config->columns;
-
-        // crop the image to match the grids aspect ratio
-        // $this->image->crop($xslicewidth, $ysliceheight, $xpos, $ypos);
+        $width = $this->croppedImage->width();
+        $height = $this->croppedImage->height();
 
         // crop start pos.
         $xpos = 0;
@@ -67,57 +135,46 @@ class LiteBriteTools {
 
         // current slice indeces
         $xslice = 0;
-        $yslice = 0;
+		$yslice = 0;
 
-        // set crop size
-        $xslicewidth = (int)round($width/$rows,0,PHP_ROUND_HALF_UP);
-        $ysliceheight = (int)round($height/$columns,0,PHP_ROUND_HALF_UP);
+		// testing, need to get or calc this
+		$xslicewidth = 1;
+		$ysliceheight = 1;
+		
 
         while($xpos <= ($width - $xslicewidth)){
             while($ypos <= ($height - $ysliceheight)){
-                
-                // we'll be storing the data in here
-                $value = [];
-                $filepath = 'images/'.$pathinfo['filename'].'-'.$xpos.'-'.$ypos.'.jpg';
 
-                // crop image
-                //$this->image->crop($xslicewidth, $ysliceheight, $xpos, $ypos); // get rid of this
-                //$this->image->save($filepath);
-                
-                // get average color
-                $src = imagecreatefromjpeg($filepath);
-
-                // Greyscale operation
-                imagecopymergegray($src, $src, 0, 0, 0, 0, imagesx($src), imagesy($src), 0);
-                
-                // $avgImage = new AverageColorTool('',$src);
-                $rgb = $this->averageImage(); // add new params here
+				$this->averageSrc($xslicewidth, $ysliceheight, $xpos, $ypos); // add new params here
                 $value = [
                     'x' => $xslice,
                     'y' => $yslice,
-                    'rgb' => $rgb,
-                    'grey'=> $rgb['red'],
-                    'dimmer' => $this->setDimmerLevel($rgb['red'],$config)
-                ];
-
-                // get rid of the extra file
-                unlink($filepath);
-
+                    // 'rgb' => $rgb,
+                    'grey'=> $this->average['red'],
+                    'dimmer' => $this->setDimmerLevel()
+				];
+				if($this->notice){
+					Log::notice('Value set: x->'.$value['x']. ' y->'.$value['y']. ' grey->'.$value['grey']. ' dimmer->'.$value['dimmer']);
+				}
+				$this->notice=false;
                 // reset, increment Y variables
-                $this->image->reset();
+				$this->croppedImage->reset();
+				$this->resetAverage();
                 $yslice++;
                 $ypos = $ysliceheight * $yslice;
 
                 // store data to array
-                $image_data['values'][$xslice][] = $value;
+                $image_data[$xslice][] = $value;
 
-            }
+			}
 
             // reset, increment X variables
             $ypos = $yslice = 0;
             $xslice++;
             $xpos = $xslicewidth * $xslice;
-        }
+		}
+		
+		Log::notice('Image Processing completed');
 
         return $image_data;
     }
@@ -125,49 +182,33 @@ class LiteBriteTools {
 	// Scan one line of the image, add the pixels to the colors arrays
 	function scanLine( $height, $width, $axis, $line)
 	{
-		$i = 0;
-		if("x" == $axis){
-			$limit = $width;
-			$y = $line;
-			$x = $i;
-
-			if(-1 == $line){
-				$y = 0;
-				$y2 = $width -1;
-				$x2 =& $i;
-			}
-		} else {
-			$limit = $height;
-			$x = $line;
-			$y =& $i;
-
-			if(-1 == $line){
-				$x = 0;
-				$x2 = $width -1;
-				$y2 =& $i;
-			}
+		if($this->notice){
+			Log::notice('Scan: '.$height.' '.$width.' '.$axis.' '.$line);
 		}
-		if(-1 == $line){
-			for($i = 0; $i < $limit; $i++){
-				$this->addPixel($x, $y);
-				$this->addPixel($x2, $y2);
-			}
-		} else {
-			// add all the pixels in the line
-			for($i = 0; $i < $limit; $i++){
-				$this->addPixel($x, $y);
-			}
+		$i = 0;
+		// Log::notice('if');
+		$limit = $width;
+		$y = $line;
+		$x = $i;
+		
+		// Log::notice('for2');
+		// add all the pixels in the line
+		for($i = 0; $i < $limit; $i++){
+			$this->addPixel($x, $y);
+		}
+		if($this->notice){
+			Log::notice('line i '.$i);
 		}
 
 	}
 
+	// get the rgb values for one pixel and add to the color array
 	function addPixel($x, $y)
 	{
-		$rgb = imagecolorat($this->image, $x, $y);
-		$this->color = imagecolorsforindex($this->image, $rgb);
-		$this->colors['red'][] = $this->color['red'];
-		$this->colors['green'][] = $this->color['green'];
-		$this->colors['blue'][] = $this->color['blue'];
+		$color = $this->image->pickColor($x, $y,'array');
+		$this->colors['red'][] = $color[0];
+		$this->colors['green'][] = $color[1];
+		$this->colors['blue'][] = $color[2];
 	}
 
 	function totalColors()
@@ -175,7 +216,9 @@ class LiteBriteTools {
 		$this->color['red'] += array_sum($this->colors['red']);
 		$this->color['green'] += array_sum($this->colors['green']);
 		$this->color['blue'] += array_sum($this->colors['blue']);
-		// dump($this->color);
+		if($this->notice){
+			Log::notice('total/size: '.$this->color['red'].' '.sizeof($this->colors['red'])); //sizeof is way too big
+		}
 	}
 
 	function averageTotal($count)
@@ -185,11 +228,13 @@ class LiteBriteTools {
 		$this->average['blue'] = intval($this->color['blue'] / $count);
 	}
 
-	function averageImage() // add new params for this so it can have boundaries within an image
+	function averageSrc($xslicewidth, $ysliceheight, $xpos, $ypos) // add new params for this so it can have boundaries within an image
 	{
+		$width = ($xslicewidth) ? $xslicewidth : $this->getWidth();
+		$height = ($ysliceheight) ? $ysliceheight : $this->getHeight();
+		// Log::notice('avgSrc: '.$xpos.' '.$ypos.' '.$width.' '.$height);
 		
-		$width = imagesx($this->image);
-		$height = imagesy($this->image);
+		// $this->scanLine( $height, $width, 'x', 0); // test
 
 		for($line = 0; $line < $height; $line++){
 			$this->scanLine( $height, $width, 'x', $line);
@@ -197,43 +242,29 @@ class LiteBriteTools {
 		}
 		$count = $width * $height;
 		$this->averageTotal($count);
-
-		// returns rgb array
-		return $this->average;
+		if($this->notice){
+			Log::notice('average total: '.$count.' '.intval($this->average['red'] / $count));
+		}
 	}
 
 	// Translates a numeric value to correspond to the available dimmer levels
-    public function setDimmerLevel($value,$config){
-        $interval = 255/$config->dimmer_levels;
-        return (int)round($value/$interval,0,PHP_ROUND_HALF_UP);
+    public function setDimmerLevel(){
+		$value = $this->average['red'];
+		$interval = 255/$this->config->dimmer_levels;
+		$rounded = (int)round($value/$interval,0,PHP_ROUND_HALF_UP);
+		if($this->notice){
+			Log::notice('set dimmer: '.$value.' '.$interval.' '.$this->config->dimmer_levels.' '.$rounded);
+		}
+        return $rounded;
 	}
-	
-	/**
-     * Copy an image
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function avgColor($source)
-    {
-        dump($source);
-        $i = imagecreatefromjpeg($source);
-        for ($x=0;$x<imagesx($i);$x++) {
-            for ($y=0;$y<imagesy($i);$y++) {
-                $rgb = imagecolorat($i,$x,$y);
-                $r   = ($rgb >> 16) & 0xFF;
-                $g   = $rgb & 0xFF;
-                $b   = $rgb & 0xFF;
-                $rTotal += $r;
-                $gTotal += $g;
-                $bTotal += $b;
-                $total++;
-            }
-        }
-        $rAverage = round($rTotal/$total);
-        $gAverage = round($gTotal/$total);
-        $bAverage = round($bTotal/$total);
-        return $data;
-    }
+
+	// Destroy the images on the instance (saves memory)
+	public function cleanup(){
+		$this->image->destroy();
+		if($this->croppedImage !== null){
+			$this->croppedImage->destroy();
+		}
+		return;
+	}
 
 }
