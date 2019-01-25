@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 48);
+/******/ 	return __webpack_require__(__webpack_require__.s = 47);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,7 +73,7 @@
 if (false) {
   module.exports = require('./cjs/react.production.min.js');
 } else {
-  module.exports = __webpack_require__(50);
+  module.exports = __webpack_require__(49);
 }
 
 
@@ -103,7 +103,7 @@ if (true) {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(57)(isValidElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(56)(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
@@ -187,19 +187,19 @@ var _classnames2 = __webpack_require__(2);
 
 var _classnames3 = _interopRequireDefault(_classnames2);
 
-var _helpers = __webpack_require__(85);
+var _helpers = __webpack_require__(84);
 
 var _helpers2 = _interopRequireDefault(_helpers);
 
-var _responsives = __webpack_require__(86);
+var _responsives = __webpack_require__(85);
 
 var _responsives2 = _interopRequireDefault(_responsives);
 
-var _colors = __webpack_require__(87);
+var _colors = __webpack_require__(86);
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _typography = __webpack_require__(88);
+var _typography = __webpack_require__(87);
 
 var _typography2 = _interopRequireDefault(_typography);
 
@@ -240,7 +240,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _element = __webpack_require__(90);
+var _element = __webpack_require__(89);
 
 Object.defineProperty(exports, 'default', {
   enumerable: true,
@@ -259,7 +259,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 "use strict";
 
 
-var bind = __webpack_require__(43);
+var bind = __webpack_require__(42);
 var isBuffer = __webpack_require__(146);
 
 /*global toString:true*/
@@ -656,11 +656,11 @@ exports.default = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createBrowserHistory__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createBrowserHistory__ = __webpack_require__(57);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__createBrowserHistory__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createHashHistory__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createHashHistory__ = __webpack_require__(60);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__createHashHistory__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__createMemoryHistory__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__createMemoryHistory__ = __webpack_require__(61);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_2__createMemoryHistory__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__LocationUtils__ = __webpack_require__(15);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_3__LocationUtils__["a"]; });
@@ -876,7 +876,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(93);
+var	fixUrls = __webpack_require__(92);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -1338,7 +1338,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _columns = __webpack_require__(95);
+var _columns = __webpack_require__(94);
 
 Object.defineProperty(exports, 'default', {
   enumerable: true,
@@ -1347,7 +1347,7 @@ Object.defineProperty(exports, 'default', {
   }
 });
 
-__webpack_require__(97);
+__webpack_require__(96);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //# sourceMappingURL=index.js.map
@@ -1359,8 +1359,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return createLocation; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return locationsAreEqual; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_resolve_pathname__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_value_equal__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_resolve_pathname__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_value_equal__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__PathUtils__ = __webpack_require__(13);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -1664,7 +1664,7 @@ if (false) {
   checkDCE();
   module.exports = require('./cjs/react-dom.production.min.js');
 } else {
-  module.exports = __webpack_require__(51);
+  module.exports = __webpack_require__(50);
 }
 
 
@@ -1701,33 +1701,33 @@ module.exports = g;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__ = __webpack_require__(55);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "BrowserRouter", function() { return __WEBPACK_IMPORTED_MODULE_0__BrowserRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__HashRouter__ = __webpack_require__(62);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "HashRouter", function() { return __WEBPACK_IMPORTED_MODULE_1__HashRouter__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Link__ = __webpack_require__(32);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Link", function() { return __WEBPACK_IMPORTED_MODULE_2__Link__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__ = __webpack_require__(63);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MemoryRouter", function() { return __WEBPACK_IMPORTED_MODULE_3__MemoryRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NavLink__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__NavLink__ = __webpack_require__(65);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NavLink", function() { return __WEBPACK_IMPORTED_MODULE_4__NavLink__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Prompt__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Prompt__ = __webpack_require__(67);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Prompt", function() { return __WEBPACK_IMPORTED_MODULE_5__Prompt__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Redirect__ = __webpack_require__(69);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Redirect", function() { return __WEBPACK_IMPORTED_MODULE_6__Redirect__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Route__ = __webpack_require__(33);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Route", function() { return __WEBPACK_IMPORTED_MODULE_7__Route__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Router__ = __webpack_require__(22);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Router", function() { return __WEBPACK_IMPORTED_MODULE_8__Router__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__StaticRouter__ = __webpack_require__(71);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "StaticRouter", function() { return __WEBPACK_IMPORTED_MODULE_9__StaticRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Switch__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__Switch__ = __webpack_require__(73);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Switch", function() { return __WEBPACK_IMPORTED_MODULE_10__Switch__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__generatePath__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__generatePath__ = __webpack_require__(75);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "generatePath", function() { return __WEBPACK_IMPORTED_MODULE_11__generatePath__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__matchPath__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__matchPath__ = __webpack_require__(76);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "matchPath", function() { return __WEBPACK_IMPORTED_MODULE_12__matchPath__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__withRouter__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__withRouter__ = __webpack_require__(77);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "withRouter", function() { return __WEBPACK_IMPORTED_MODULE_13__withRouter__["a"]; });
 
 
@@ -2065,7 +2065,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _button = __webpack_require__(84);
+var _button = __webpack_require__(83);
 
 Object.defineProperty(exports, 'default', {
   enumerable: true,
@@ -2074,7 +2074,7 @@ Object.defineProperty(exports, 'default', {
   }
 });
 
-__webpack_require__(91);
+__webpack_require__(90);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //# sourceMappingURL=index.js.map
@@ -2091,7 +2091,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
-var _box = __webpack_require__(100);
+var _box = __webpack_require__(99);
 
 Object.defineProperty(exports, 'default', {
   enumerable: true,
@@ -2100,7 +2100,7 @@ Object.defineProperty(exports, 'default', {
   }
 });
 
-__webpack_require__(101);
+__webpack_require__(100);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //# sourceMappingURL=index.js.map
@@ -2141,10 +2141,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(44);
+    adapter = __webpack_require__(43);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(44);
+    adapter = __webpack_require__(43);
   }
   return adapter;
 }
@@ -2661,7 +2661,7 @@ Route.childContextTypes = {
 /* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isarray = __webpack_require__(67)
+var isarray = __webpack_require__(66)
 
 /**
  * Expose `pathToRegexp`.
@@ -3166,59 +3166,6 @@ exports.default = {
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactAddonsCssTransitionGroup = __webpack_require__(119);
-
-var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
-
-var _loader = __webpack_require__(130);
-
-var _loader2 = _interopRequireDefault(_loader);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Loading = function Loading(props) {
-
-    var loader = document.querySelector('.loading');
-
-    if (!props.loading && loader) {
-        loader.classList.add('remove');
-        loader.addEventListener('transitionend', function (e) {
-            if (e.propertyName !== 'opacity') return;
-            loader.classList.add('removed');
-        });
-    }
-
-    return null; // for now
-
-    // return (
-    //     <ReactCSSTransitionGroup
-    //       transitionName="example"
-    //       transitionEnterTimeout={500}
-    //       transitionLeaveTimeout={300}>
-    //         <div className="loading">
-    //             <Loader />
-    //         </div>
-    //     </ReactCSSTransitionGroup>
-    // );
-};
-
-exports.default = Loading;
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 exports.__esModule = true;
 exports.default = void 0;
 
@@ -3228,7 +3175,7 @@ exports.default = _default;
 module.exports = exports["default"];
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3283,7 +3230,7 @@ var nameShape = exports.nameShape = _propTypes2.default.oneOfType([_propTypes2.d
 })]);
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5864,7 +5811,7 @@ Popper.Defaults = Defaults;
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(19)))
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -16235,7 +16182,7 @@ return jQuery;
 
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16253,7 +16200,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16264,7 +16211,7 @@ var settle = __webpack_require__(150);
 var buildURL = __webpack_require__(152);
 var parseHeaders = __webpack_require__(153);
 var isURLSameOrigin = __webpack_require__(154);
-var createError = __webpack_require__(45);
+var createError = __webpack_require__(44);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(155);
 
 module.exports = function xhrAdapter(config) {
@@ -16440,7 +16387,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16465,7 +16412,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16477,7 +16424,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16503,15 +16450,15 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(49);
+__webpack_require__(48);
 module.exports = __webpack_require__(165);
 
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16527,7 +16474,7 @@ var _reactDom = __webpack_require__(18);
 
 var _reactRouterDom = __webpack_require__(20);
 
-var _Main = __webpack_require__(81);
+var _Main = __webpack_require__(80);
 
 var _Main2 = _interopRequireDefault(_Main);
 
@@ -16569,7 +16516,7 @@ if (app) {
 }
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18459,7 +18406,7 @@ module.exports = react;
 
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18483,8 +18430,8 @@ if (true) {
 var React = __webpack_require__(0);
 var _assign = __webpack_require__(16);
 var checkPropTypes = __webpack_require__(17);
-var scheduler = __webpack_require__(52);
-var tracing = __webpack_require__(54);
+var scheduler = __webpack_require__(51);
+var tracing = __webpack_require__(53);
 
 /**
  * Use invariant() to assert state which your program assumes to be true.
@@ -38551,7 +38498,7 @@ module.exports = reactDom;
 
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38560,12 +38507,12 @@ module.exports = reactDom;
 if (false) {
   module.exports = require('./cjs/scheduler.production.min.js');
 } else {
-  module.exports = __webpack_require__(53);
+  module.exports = __webpack_require__(52);
 }
 
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39276,7 +39223,7 @@ exports.unstable_getFirstCallbackNode = unstable_getFirstCallbackNode;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19)))
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39285,12 +39232,12 @@ exports.unstable_getFirstCallbackNode = unstable_getFirstCallbackNode;
 if (false) {
   module.exports = require('./cjs/scheduler-tracing.production.min.js');
 } else {
-  module.exports = __webpack_require__(55);
+  module.exports = __webpack_require__(54);
 }
 
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39720,7 +39667,7 @@ exports.unstable_unsubscribe = unstable_unsubscribe;
 
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -39786,7 +39733,7 @@ BrowserRouter.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (BrowserRouter);
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40348,7 +40295,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 
 /***/ }),
-/* 58 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -40652,7 +40599,7 @@ var createBrowserHistory = function createBrowserHistory() {
 /* harmony default export */ __webpack_exports__["a"] = (createBrowserHistory);
 
 /***/ }),
-/* 59 */
+/* 58 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -40728,7 +40675,7 @@ function resolvePathname(to) {
 /* harmony default export */ __webpack_exports__["a"] = (resolvePathname);
 
 /***/ }),
-/* 60 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -40772,7 +40719,7 @@ function valueEqual(a, b) {
 /* harmony default export */ __webpack_exports__["a"] = (valueEqual);
 
 /***/ }),
-/* 61 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41093,7 +41040,7 @@ var createHashHistory = function createHashHistory() {
 /* harmony default export */ __webpack_exports__["a"] = (createHashHistory);
 
 /***/ }),
-/* 62 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41261,7 +41208,7 @@ var createMemoryHistory = function createMemoryHistory() {
 /* harmony default export */ __webpack_exports__["a"] = (createMemoryHistory);
 
 /***/ }),
-/* 63 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41326,18 +41273,18 @@ HashRouter.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (HashRouter);
 
 /***/ }),
-/* 64 */
+/* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_MemoryRouter__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_MemoryRouter__ = __webpack_require__(64);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_MemoryRouter__["a" /* default */]);
 
 /***/ }),
-/* 65 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41403,7 +41350,7 @@ MemoryRouter.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (MemoryRouter);
 
 /***/ }),
-/* 66 */
+/* 65 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41489,7 +41436,7 @@ NavLink.defaultProps = {
 /* harmony default export */ __webpack_exports__["a"] = (NavLink);
 
 /***/ }),
-/* 67 */
+/* 66 */
 /***/ (function(module, exports) {
 
 module.exports = Array.isArray || function (arr) {
@@ -41498,18 +41445,18 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 68 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Prompt__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Prompt__ = __webpack_require__(68);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Prompt__["a" /* default */]);
 
 /***/ }),
-/* 69 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41600,18 +41547,18 @@ Prompt.contextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Prompt);
 
 /***/ }),
-/* 70 */
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Redirect__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Redirect__ = __webpack_require__(70);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Redirect__["a" /* default */]);
 
 /***/ }),
-/* 71 */
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41740,18 +41687,18 @@ Redirect.contextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Redirect);
 
 /***/ }),
-/* 72 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_StaticRouter__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_StaticRouter__ = __webpack_require__(72);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_StaticRouter__["a" /* default */]);
 
 /***/ }),
-/* 73 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41917,18 +41864,18 @@ StaticRouter.childContextTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (StaticRouter);
 
 /***/ }),
-/* 74 */
+/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Switch__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_Switch__ = __webpack_require__(74);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_Switch__["a" /* default */]);
 
 /***/ }),
-/* 75 */
+/* 74 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42020,7 +41967,7 @@ Switch.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (Switch);
 
 /***/ }),
-/* 76 */
+/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42031,7 +41978,7 @@ Switch.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_generatePath__["a" /* default */]);
 
 /***/ }),
-/* 77 */
+/* 76 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42042,18 +41989,18 @@ Switch.propTypes = {
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_matchPath__["a" /* default */]);
 
 /***/ }),
-/* 78 */
+/* 77 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_withRouter__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_router_es_withRouter__ = __webpack_require__(78);
 // Written in this round about way for babel-transform-imports
 
 
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_withRouter__["a" /* default */]);
 
 /***/ }),
-/* 79 */
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -42061,7 +42008,7 @@ Switch.propTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics__ = __webpack_require__(80);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Route__ = __webpack_require__(34);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -42102,7 +42049,7 @@ var withRouter = function withRouter(Component) {
 /* harmony default export */ __webpack_exports__["a"] = (withRouter);
 
 /***/ }),
-/* 80 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42177,7 +42124,7 @@ module.exports = hoistNonReactStatics;
 
 
 /***/ }),
-/* 81 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42196,11 +42143,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(20);
 
-var _Home = __webpack_require__(82);
+var _Home = __webpack_require__(81);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Config = __webpack_require__(103);
+var _Config = __webpack_require__(102);
 
 var _Config2 = _interopRequireDefault(_Config);
 
@@ -42288,7 +42235,7 @@ var Main = function (_Component) {
 exports.default = Main;
 
 /***/ }),
-/* 82 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42305,11 +42252,11 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Uploader = __webpack_require__(83);
+var _Uploader = __webpack_require__(82);
 
 var _Uploader2 = _interopRequireDefault(_Uploader);
 
-var _Loop = __webpack_require__(94);
+var _Loop = __webpack_require__(93);
 
 var _Loop2 = _interopRequireDefault(_Loop);
 
@@ -42361,13 +42308,14 @@ var Home = function (_Component) {
             }
             return _react2.default.createElement(
                 'div',
-                { className: 'container', __source: {
+                {
+                    __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 22
+                        lineNumber: 23
                     }
                 },
                 _react2.default.createElement(
-                    'div',
+                    _columns2.default,
                     {
                         __source: {
                             fileName: _jsxFileName,
@@ -42375,7 +42323,7 @@ var Home = function (_Component) {
                         }
                     },
                     _react2.default.createElement(
-                        _columns2.default,
+                        _columns2.default.Column,
                         {
                             __source: {
                                 fileName: _jsxFileName,
@@ -42383,7 +42331,7 @@ var Home = function (_Component) {
                             }
                         },
                         _react2.default.createElement(
-                            _columns2.default.Column,
+                            _box2.default,
                             {
                                 __source: {
                                     fileName: _jsxFileName,
@@ -42391,65 +42339,65 @@ var Home = function (_Component) {
                                 }
                             },
                             _react2.default.createElement(
-                                _box2.default,
-                                {
-                                    __source: {
+                                'div',
+                                { className: 'card-header', __source: {
                                         fileName: _jsxFileName,
                                         lineNumber: 27
                                     }
                                 },
                                 _react2.default.createElement(
-                                    'div',
-                                    { className: 'card-header', __source: {
+                                    'h1',
+                                    { className: 'title is-1', __source: {
                                             fileName: _jsxFileName,
                                             lineNumber: 28
                                         }
                                     },
-                                    _react2.default.createElement(
-                                        'h1',
-                                        { className: 'title is-1', __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 29
-                                            }
-                                        },
-                                        'LiteBrite'
-                                    )
-                                ),
+                                    'LiteBrite'
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'card-body', __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 31
+                                    }
+                                },
                                 _react2.default.createElement(
-                                    'div',
-                                    { className: 'card-body', __source: {
+                                    'h2',
+                                    { className: 'subtitle is-4', __source: {
                                             fileName: _jsxFileName,
                                             lineNumber: 32
                                         }
                                     },
-                                    _react2.default.createElement(
-                                        'h2',
-                                        { className: 'subtitle is-4', __source: {
-                                                fileName: _jsxFileName,
-                                                lineNumber: 33
-                                            }
-                                        },
-                                        'Upload a file and we\'ll put it up on the LiteBrite'
-                                    )
-                                ),
-                                _react2.default.createElement(_Uploader2.default, {
-                                    __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 35
-                                    }
-                                })
+                                    'Upload a file and we\'ll put it up on the LiteBrite'
+                                )
                             ),
-                            responseText
-                        )
-                    ),
-                    _react2.default.createElement('hr', {
+                            _react2.default.createElement(_Uploader2.default, {
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 34
+                                }
+                            })
+                        ),
+                        responseText
+                    )
+                ),
+                _react2.default.createElement('hr', {
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 39
+                    }
+                }),
+                _react2.default.createElement(
+                    'div',
+                    {
                         __source: {
                             fileName: _jsxFileName,
                             lineNumber: 40
                         }
-                    }),
+                    },
                     _react2.default.createElement(
-                        'div',
+                        _columns2.default,
                         {
                             __source: {
                                 fileName: _jsxFileName,
@@ -42457,20 +42405,29 @@ var Home = function (_Component) {
                             }
                         },
                         _react2.default.createElement(
-                            'h2',
-                            { className: 'subtitle is-2', __source: {
+                            _columns2.default.Column,
+                            {
+                                __source: {
                                     fileName: _jsxFileName,
                                     lineNumber: 42
                                 }
                             },
-                            'Uploads'
-                        ),
-                        _react2.default.createElement(_Loop2.default, { className: 'columns', __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 43
-                            }
-                        })
-                    )
+                            _react2.default.createElement(
+                                'h2',
+                                { className: 'subtitle is-2', __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 43
+                                    }
+                                },
+                                'Previous Uploads'
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(_Loop2.default, { className: 'columns', __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 46
+                        }
+                    })
                 )
             );
         }
@@ -42482,7 +42439,7 @@ var Home = function (_Component) {
 exports.default = Home;
 
 /***/ }),
-/* 83 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42891,7 +42848,7 @@ var Uploader = function (_Component) {
 exports.default = Uploader;
 
 /***/ }),
-/* 84 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42923,7 +42880,7 @@ var _modifiers = __webpack_require__(3);
 
 var _modifiers2 = _interopRequireDefault(_modifiers);
 
-var _buttonGroup = __webpack_require__(89);
+var _buttonGroup = __webpack_require__(88);
 
 var _buttonGroup2 = _interopRequireDefault(_buttonGroup);
 
@@ -43040,7 +42997,7 @@ exports.default = Button;
 //# sourceMappingURL=button.js.map
 
 /***/ }),
-/* 85 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43118,7 +43075,7 @@ exports.default = {
 //# sourceMappingURL=helpers.js.map
 
 /***/ }),
-/* 86 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43207,7 +43164,7 @@ exports.default = {
 //# sourceMappingURL=responsives.js.map
 
 /***/ }),
-/* 87 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43258,7 +43215,7 @@ exports.default = {
 //# sourceMappingURL=colors.js.map
 
 /***/ }),
-/* 88 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43316,7 +43273,7 @@ exports.default = {
 //# sourceMappingURL=typography.js.map
 
 /***/ }),
-/* 89 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43392,7 +43349,7 @@ exports.default = ButtonGroup;
 //# sourceMappingURL=button-group.js.map
 
 /***/ }),
-/* 90 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43451,13 +43408,13 @@ exports.default = Element;
 //# sourceMappingURL=element.js.map
 
 /***/ }),
-/* 91 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(92);
+var content = __webpack_require__(91);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -43482,7 +43439,7 @@ if(false) {
 }
 
 /***/ }),
-/* 92 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(10)(false);
@@ -43496,7 +43453,7 @@ exports.push([module.i, "@keyframes spinAround {\n  from {\n    transform: rotat
 
 
 /***/ }),
-/* 93 */
+/* 92 */
 /***/ (function(module, exports) {
 
 
@@ -43591,7 +43548,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 94 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43612,7 +43569,7 @@ var _columns = __webpack_require__(14);
 
 var _columns2 = _interopRequireDefault(_columns);
 
-var _LoopItem = __webpack_require__(99);
+var _LoopItem = __webpack_require__(98);
 
 var _LoopItem2 = _interopRequireDefault(_LoopItem);
 
@@ -43726,7 +43683,7 @@ var Loop = function (_Component) {
 exports.default = Loop;
 
 /***/ }),
-/* 95 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43754,7 +43711,7 @@ var _constants = __webpack_require__(7);
 
 var _constants2 = _interopRequireDefault(_constants);
 
-var _column = __webpack_require__(96);
+var _column = __webpack_require__(95);
 
 var _column2 = _interopRequireDefault(_column);
 
@@ -43835,7 +43792,7 @@ exports.default = Columns;
 //# sourceMappingURL=columns.js.map
 
 /***/ }),
-/* 96 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44001,13 +43958,13 @@ exports.default = Column;
 //# sourceMappingURL=column.js.map
 
 /***/ }),
-/* 97 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(98);
+var content = __webpack_require__(97);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -44032,7 +43989,7 @@ if(false) {
 }
 
 /***/ }),
-/* 98 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(10)(false);
@@ -44046,7 +44003,7 @@ exports.push([module.i, "@keyframes spinAround {\n  from {\n    transform: rotat
 
 
 /***/ }),
-/* 99 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44108,7 +44065,7 @@ var ProjectMenuItem = function (_Component) {
 						},
 						_react2.default.createElement('img', {
 							className: 'collection-image',
-							src: '/images/' + this.props.entry.filename, __source: {
+							src: '/storage/' + this.props.entry.original_path, __source: {
 								fileName: _jsxFileName,
 								lineNumber: 11
 							}
@@ -44142,7 +44099,7 @@ var ProjectMenuItem = function (_Component) {
 exports.default = (0, _reactRouterDom.withRouter)(ProjectMenuItem);
 
 /***/ }),
-/* 100 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44210,13 +44167,13 @@ exports.default = Box;
 //# sourceMappingURL=box.js.map
 
 /***/ }),
-/* 101 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(102);
+var content = __webpack_require__(101);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -44241,7 +44198,7 @@ if(false) {
 }
 
 /***/ }),
-/* 102 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(10)(false);
@@ -44255,7 +44212,7 @@ exports.push([module.i, "@keyframes spinAround {\n  from {\n    transform: rotat
 
 
 /***/ }),
-/* 103 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44284,9 +44241,9 @@ var _button = __webpack_require__(25);
 
 var _button2 = _interopRequireDefault(_button);
 
-var _form = __webpack_require__(104);
+var _form = __webpack_require__(103);
 
-var _Loading = __webpack_require__(38);
+var _Loading = __webpack_require__(118);
 
 var _Loading2 = _interopRequireDefault(_Loading);
 
@@ -44798,7 +44755,7 @@ var Config = function (_Component) {
 exports.default = Config;
 
 /***/ }),
-/* 104 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44809,7 +44766,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Help = exports.Radio = exports.Checkbox = exports.Select = exports.Textarea = exports.Label = exports.Input = exports.Control = exports.Field = undefined;
 
-var _field = __webpack_require__(105);
+var _field = __webpack_require__(104);
 
 Object.defineProperty(exports, 'Field', {
   enumerable: true,
@@ -44818,7 +44775,7 @@ Object.defineProperty(exports, 'Field', {
   }
 });
 
-var _control = __webpack_require__(109);
+var _control = __webpack_require__(108);
 
 Object.defineProperty(exports, 'Control', {
   enumerable: true,
@@ -44827,7 +44784,7 @@ Object.defineProperty(exports, 'Control', {
   }
 });
 
-var _input = __webpack_require__(110);
+var _input = __webpack_require__(109);
 
 Object.defineProperty(exports, 'Input', {
   enumerable: true,
@@ -44836,7 +44793,7 @@ Object.defineProperty(exports, 'Input', {
   }
 });
 
-var _label = __webpack_require__(111);
+var _label = __webpack_require__(110);
 
 Object.defineProperty(exports, 'Label', {
   enumerable: true,
@@ -44845,7 +44802,7 @@ Object.defineProperty(exports, 'Label', {
   }
 });
 
-var _textarea = __webpack_require__(112);
+var _textarea = __webpack_require__(111);
 
 Object.defineProperty(exports, 'Textarea', {
   enumerable: true,
@@ -44854,7 +44811,7 @@ Object.defineProperty(exports, 'Textarea', {
   }
 });
 
-var _select = __webpack_require__(113);
+var _select = __webpack_require__(112);
 
 Object.defineProperty(exports, 'Select', {
   enumerable: true,
@@ -44863,7 +44820,7 @@ Object.defineProperty(exports, 'Select', {
   }
 });
 
-var _checkbox = __webpack_require__(114);
+var _checkbox = __webpack_require__(113);
 
 Object.defineProperty(exports, 'Checkbox', {
   enumerable: true,
@@ -44872,7 +44829,7 @@ Object.defineProperty(exports, 'Checkbox', {
   }
 });
 
-var _radio = __webpack_require__(115);
+var _radio = __webpack_require__(114);
 
 Object.defineProperty(exports, 'Radio', {
   enumerable: true,
@@ -44881,7 +44838,7 @@ Object.defineProperty(exports, 'Radio', {
   }
 });
 
-var _help = __webpack_require__(116);
+var _help = __webpack_require__(115);
 
 Object.defineProperty(exports, 'Help', {
   enumerable: true,
@@ -44890,13 +44847,13 @@ Object.defineProperty(exports, 'Help', {
   }
 });
 
-__webpack_require__(117);
+__webpack_require__(116);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 105 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44906,7 +44863,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _field = __webpack_require__(106);
+var _field = __webpack_require__(105);
 
 Object.defineProperty(exports, 'default', {
   enumerable: true,
@@ -44919,7 +44876,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 106 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44943,11 +44900,11 @@ var _classnames2 = __webpack_require__(2);
 
 var _classnames3 = _interopRequireDefault(_classnames2);
 
-var _fieldLabel = __webpack_require__(107);
+var _fieldLabel = __webpack_require__(106);
 
 var _fieldLabel2 = _interopRequireDefault(_fieldLabel);
 
-var _fieldBody = __webpack_require__(108);
+var _fieldBody = __webpack_require__(107);
 
 var _fieldBody2 = _interopRequireDefault(_fieldBody);
 
@@ -45018,7 +44975,7 @@ exports.default = Field;
 //# sourceMappingURL=field.js.map
 
 /***/ }),
-/* 107 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45091,7 +45048,7 @@ exports.default = FieldLabel;
 //# sourceMappingURL=field-label.js.map
 
 /***/ }),
-/* 108 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45159,7 +45116,7 @@ exports.default = FieldBody;
 //# sourceMappingURL=field-body.js.map
 
 /***/ }),
-/* 109 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45249,7 +45206,7 @@ exports.default = Control;
 //# sourceMappingURL=control.js.map
 
 /***/ }),
-/* 110 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45383,7 +45340,7 @@ exports.default = Input;
 //# sourceMappingURL=input.js.map
 
 /***/ }),
-/* 111 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45453,7 +45410,7 @@ exports.default = Label;
 //# sourceMappingURL=label.js.map
 
 /***/ }),
-/* 112 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45555,7 +45512,7 @@ exports.default = Textarea;
 //# sourceMappingURL=textarea.js.map
 
 /***/ }),
-/* 113 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45669,7 +45626,7 @@ exports.default = Select;
 //# sourceMappingURL=select.js.map
 
 /***/ }),
-/* 114 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45757,7 +45714,7 @@ exports.default = Checkbox;
 //# sourceMappingURL=checkbox.js.map
 
 /***/ }),
-/* 115 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45844,7 +45801,7 @@ exports.default = Radio;
 //# sourceMappingURL=radio.js.map
 
 /***/ }),
-/* 116 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45922,13 +45879,13 @@ exports.default = Help;
 //# sourceMappingURL=help.js.map
 
 /***/ }),
-/* 117 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(118);
+var content = __webpack_require__(117);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -45953,7 +45910,7 @@ if(false) {
 }
 
 /***/ }),
-/* 118 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(10)(false);
@@ -45965,6 +45922,59 @@ exports.push([module.i, "@keyframes spinAround {\n  from {\n    transform: rotat
 
 // exports
 
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactAddonsCssTransitionGroup = __webpack_require__(119);
+
+var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+
+var _loader = __webpack_require__(130);
+
+var _loader2 = _interopRequireDefault(_loader);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Loading = function Loading(props) {
+
+    var loader = document.querySelector('.loading');
+
+    if (!props.loading && loader) {
+        loader.classList.add('remove');
+        loader.addEventListener('transitionend', function (e) {
+            if (e.propertyName !== 'opacity') return;
+            loader.classList.add('removed');
+        });
+    }
+
+    return null; // for now
+
+    // return (
+    //     <ReactCSSTransitionGroup
+    //       transitionName="example"
+    //       transitionEnterTimeout={500}
+    //       transitionLeaveTimeout={300}>
+    //         <div className="loading">
+    //             <Loader />
+    //         </div>
+    //     </ReactCSSTransitionGroup>
+    // );
+};
+
+exports.default = Loading;
 
 /***/ }),
 /* 119 */
@@ -46010,7 +46020,7 @@ var _CSSTransitionGroupChild = __webpack_require__(124);
 
 var _CSSTransitionGroupChild2 = _interopRequireDefault(_CSSTransitionGroupChild);
 
-var _PropTypes = __webpack_require__(40);
+var _PropTypes = __webpack_require__(39);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46516,7 +46526,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactDom = __webpack_require__(18);
 
-var _PropTypes = __webpack_require__(40);
+var _PropTypes = __webpack_require__(39);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46779,7 +46789,7 @@ var _interopRequireDefault = __webpack_require__(27);
 exports.__esModule = true;
 exports.default = void 0;
 
-var _inDOM = _interopRequireDefault(__webpack_require__(39));
+var _inDOM = _interopRequireDefault(__webpack_require__(38));
 
 var vendors = ['', 'webkit', 'moz', 'o', 'ms'];
 var cancel = 'clearTimeout';
@@ -46839,7 +46849,7 @@ var _interopRequireDefault = __webpack_require__(27);
 exports.__esModule = true;
 exports.default = exports.animationEnd = exports.animationDelay = exports.animationTiming = exports.animationDuration = exports.animationName = exports.transitionEnd = exports.transitionDuration = exports.transitionDelay = exports.transitionTiming = exports.transitionProperty = exports.transform = void 0;
 
-var _inDOM = _interopRequireDefault(__webpack_require__(39));
+var _inDOM = _interopRequireDefault(__webpack_require__(38));
 
 var transform = 'transform';
 exports.transform = transform;
@@ -47094,10 +47104,6 @@ var _button = __webpack_require__(25);
 
 var _button2 = _interopRequireDefault(_button);
 
-var _Loading = __webpack_require__(38);
-
-var _Loading2 = _interopRequireDefault(_Loading);
-
 var _Grid = __webpack_require__(135);
 
 var _Grid2 = _interopRequireDefault(_Grid);
@@ -47109,6 +47115,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import Loading from '../UI/Loading';
 
 var SubmissionMain = function (_Component) {
     _inherits(SubmissionMain, _Component);
@@ -47123,7 +47130,6 @@ var SubmissionMain = function (_Component) {
             activeConfig: null,
             filename: '',
             image: null,
-            imagetest: null,
             updating: false
         };
         _this.updateFromActiveConfig = _this.updateFromActiveConfig.bind(_this);
@@ -47133,7 +47139,6 @@ var SubmissionMain = function (_Component) {
     _createClass(SubmissionMain, [{
         key: 'componentWillMount',
         value: function componentWillMount() {
-            console.log('image id', this.props.match.params.id);
             if (this.props.match.params.id) {
                 this.getImageData();
             }
@@ -47144,10 +47149,10 @@ var SubmissionMain = function (_Component) {
         value: function updateFromActiveConfig() {
             var _this2 = this;
 
-            console.log('props', this.props);
+            // console.log('props',this.props);
             this.setState({ updating: true });
             axios.post('/update/' + this.props.match.params.id, { id: this.props.match.params.id }).then(function (res) {
-                console.log('ok', res.data);
+                // console.log('ok',res.data);
 
                 _this2.setState({
                     updating: false,
@@ -47195,7 +47200,7 @@ var SubmissionMain = function (_Component) {
     }, {
         key: 'recordAdjustments',
         value: function recordAdjustments() {
-            console.log('click');
+            // console.log('click');
         }
     }, {
         key: 'getActiveConfig',
@@ -47203,7 +47208,7 @@ var SubmissionMain = function (_Component) {
             var _this3 = this;
 
             axios.get('/active-config').then(function (res) {
-                console.log('active', res.data);
+                // console.log('active',res.data);
                 _this3.setState({ activeConfig: res.data });
             }).catch(function (error) {
                 // log out the error
@@ -47249,12 +47254,14 @@ var SubmissionMain = function (_Component) {
             var _this4 = this;
 
             axios.post('/get-image', { id: this.props.match.params.id }).then(function (res) {
+                console.log(res.data);
                 _this4.setState({
                     config: res.data.config,
-                    filename: res.data.cropped_image,
+                    original_path: res.data.original_path,
+                    filename: res.data.filename,
                     image: JSON.parse(res.data.image_json)
                 });
-                // console.log(this.state);
+                console.log(_this4.state.image);
             }).catch(function (error) {
                 // log out the error
                 var message = 'ERROR: ';
@@ -47297,30 +47304,39 @@ var SubmissionMain = function (_Component) {
         key: 'render',
         value: function render() {
             var grid = null;
+            var image = null;
+            var configInfo = null;
             if (this.state.image && this.state.config) {
-                grid = _react2.default.createElement(_Grid2.default, { map: this.state.image, config: this.state.config, __source: {
+                image = _react2.default.createElement('img', { src: '/storage/' + this.state.original_path, style: { width: '100%' }, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 189
+                        lineNumber: 191
                     }
                 });
-            }
-            var updater = null;
-            return _react2.default.createElement(
-                'div',
-                {
-                    __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 193
-                    }
-                },
-                _react2.default.createElement(
+                configInfo = _react2.default.createElement(
                     'pre',
                     {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 194
+                            lineNumber: 193
                         }
                     },
+                    _react2.default.createElement(
+                        'code',
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 194
+                            }
+                        },
+                        'ID: ',
+                        this.state.config.id
+                    ),
+                    _react2.default.createElement('br', {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 194
+                        }
+                    }),
                     _react2.default.createElement(
                         'code',
                         {
@@ -47329,7 +47345,42 @@ var SubmissionMain = function (_Component) {
                                 lineNumber: 195
                             }
                         },
-                        JSON.stringify(this.state.config, null, 2)
+                        'Name: ',
+                        this.state.config.name
+                    ),
+                    _react2.default.createElement('br', {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 195
+                        }
+                    }),
+                    _react2.default.createElement(
+                        'code',
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 196
+                            }
+                        },
+                        'Rows: ',
+                        this.state.config.rows
+                    ),
+                    _react2.default.createElement('br', {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 196
+                        }
+                    }),
+                    _react2.default.createElement(
+                        'code',
+                        {
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 197
+                            }
+                        },
+                        'Columns: ',
+                        this.state.config.columns
                     ),
                     _react2.default.createElement('br', {
                         __source: {
@@ -47345,15 +47396,46 @@ var SubmissionMain = function (_Component) {
                                 lineNumber: 198
                             }
                         },
-                        JSON.stringify(this.state.updating, null, 2)
-                    )
-                ),
+                        'Dimmer : ',
+                        this.state.config.dimmer_levels,
+                        ' levels'
+                    ),
+                    _react2.default.createElement('br', {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 198
+                        }
+                    })
+                );
+
+                // determine some dimensions (we don't need all of these atm but we may later on)
+                var aspectRatio = this.state.config.rows / this.state.config.columns;
+                var imgWidth = document.querySelector('.grid-wrap').offsetWidth;
+                var cellWidth = imgWidth / this.state.config.columns;
+                var imgHeight = cellWidth * aspectRatio * this.state.config.columns;
+                var cellHeight = imgHeight / this.state.config.rows;
+
+                grid = _react2.default.createElement(_Grid2.default, { map: this.state.image, config: this.state.config, cellWidth: cellWidth, cellHeight: cellHeight, __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 209
+                    }
+                });
+            }
+            // let updater = null;
+            return _react2.default.createElement(
+                'div',
+                {
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 213
+                    }
+                },
                 _react2.default.createElement(
                     _columns2.default,
                     {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 202
+                            lineNumber: 214
                         }
                     },
                     _react2.default.createElement(
@@ -47361,31 +47443,18 @@ var SubmissionMain = function (_Component) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 203
-                            }
-                        },
-                        _react2.default.createElement('img', { src: '/' + this.state.filename, className: 'column', style: { width: '100%' }, __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 204
-                            }
-                        })
-                    ),
-                    _react2.default.createElement(
-                        _columns2.default.Column,
-                        {
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 206
+                                lineNumber: 215
                             }
                         },
                         _react2.default.createElement(
-                            'div',
-                            { className: 'grid-wrap', __source: {
+                            'h1',
+                            { className: 'title', __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 207
+                                    lineNumber: 216
                                 }
                             },
-                            grid
+                            'Results for ',
+                            this.state.filename
                         )
                     )
                 ),
@@ -47394,7 +47463,7 @@ var SubmissionMain = function (_Component) {
                     {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 212
+                            lineNumber: 219
                         }
                     },
                     _react2.default.createElement(
@@ -47402,7 +47471,7 @@ var SubmissionMain = function (_Component) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 213
+                                lineNumber: 220
                             }
                         },
                         _react2.default.createElement(
@@ -47410,14 +47479,30 @@ var SubmissionMain = function (_Component) {
                             {
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 214
+                                    lineNumber: 221
                                 }
                             },
+                            _react2.default.createElement(
+                                'h2',
+                                { className: 'subtitle', __source: {
+                                        fileName: _jsxFileName,
+                                        lineNumber: 222
+                                    }
+                                },
+                                'Config'
+                            ),
+                            configInfo,
+                            _react2.default.createElement('hr', {
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 224
+                                }
+                            }),
                             _react2.default.createElement(
                                 _button2.default,
                                 { onClick: this.updateFromActiveConfig, __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 215
+                                        lineNumber: 225
                                     }
                                 },
                                 'Update To Active Config'
@@ -47426,47 +47511,10 @@ var SubmissionMain = function (_Component) {
                                 _button2.default,
                                 { onClick: this.recordAdjustments, __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 216
+                                        lineNumber: 226
                                     }
                                 },
                                 'Record Image Adjustments'
-                            )
-                        )
-                    )
-                ),
-                _react2.default.createElement(
-                    _columns2.default,
-                    {
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 220
-                        }
-                    },
-                    _react2.default.createElement(
-                        _columns2.default.Column,
-                        {
-                            __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 221
-                            }
-                        },
-                        _react2.default.createElement(
-                            'pre',
-                            {
-                                __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 222
-                                }
-                            },
-                            _react2.default.createElement(
-                                'code',
-                                {
-                                    __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 223
-                                    }
-                                },
-                                JSON.stringify(this.state.image, null, 2)
                             )
                         )
                     ),
@@ -47478,25 +47526,25 @@ var SubmissionMain = function (_Component) {
                                 lineNumber: 229
                             }
                         },
-                        _react2.default.createElement(
-                            'pre',
-                            {
-                                __source: {
-                                    fileName: _jsxFileName,
-                                    lineNumber: 230
-                                }
-                            },
-                            _react2.default.createElement(
-                                'code',
-                                {
-                                    __source: {
-                                        fileName: _jsxFileName,
-                                        lineNumber: 231
-                                    }
-                                },
-                                JSON.stringify(this.state.imagetest, null, 2)
-                            )
-                        )
+                        image
+                    )
+                ),
+                _react2.default.createElement(
+                    _columns2.default,
+                    {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 233
+                        }
+                    },
+                    _react2.default.createElement(
+                        _columns2.default.Column,
+                        { className: 'grid-wrap', __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 234
+                            }
+                        },
+                        grid
                     )
                 )
             );
@@ -47531,45 +47579,33 @@ var _columns2 = _interopRequireDefault(_columns);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Grid = function Grid(props) {
-    console.log('grid', props.map, props.config);
+    // console.log('grid',props.map,props.config);
     var gridItems = false;
     if (props.map) {
+
         gridItems = props.map.map(function (row, index) {
             var colItems = [];
             Object.entries(row).forEach(function (cell, index) {
-                // console.log(cell[1],index);
                 cell = cell[1];
-                var textColor = 255 - cell.grey;
+                // const textColor = 255 - cell.grey;
                 // const cellH = props.map.image.height / props.config.rows;
-                colItems.push(_react2.default.createElement(
-                    'div',
-                    { className: 'grid-cell', key: index, style: {
-                            background: 'rgb(' + cell.grey + ',' + cell.grey + ',' + cell.grey + ')',
-                            height: '1px',
-                            width: '1px',
-                            display: 'flex',
-                            justifyContent: 'center'
-                        }, __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 17
-                        }
-                    },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'dimmer-level', style: { color: 'rgb(' + textColor + ',' + textColor + ',' + textColor + ')' }, __source: {
-                                fileName: _jsxFileName,
-                                lineNumber: 23
-                            }
-                        },
-                        cell.dimmer
-                    )
-                ));
+                colItems.push(_react2.default.createElement('div', { className: 'grid-cell', key: index, style: {
+                        background: 'rgb(' + cell.grey + ',' + cell.grey + ',' + cell.grey + ')',
+                        height: parseInt(props.cellWidth) + 'px',
+                        display: 'flex',
+                        justifyContent: 'center'
+                    }, __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 17
+                    }
+                }));
             });
+            // FOR LATER, DIMMER LEVELS DIV: <div className="dimmer-level" style={{color:'rgb(' + textColor + ',' + textColor + ',' + textColor + ')'}}>{cell.dimmer}</div>
             // console.log('items',colItems);
-            // const cellW = props.map.image.width / props.config.columns
+
             return _react2.default.createElement(
                 _columns2.default.Column,
-                { key: index, className: 'grid-column', style: { width: '1px', height: '1px' }, __source: {
+                { key: index, className: 'grid-column', __source: {
                         fileName: _jsxFileName,
                         lineNumber: 29
                     }
@@ -47780,8 +47816,8 @@ window._ = __webpack_require__(141);
  */
 
 try {
-  window.Popper = __webpack_require__(41).default;
-  window.$ = window.jQuery = __webpack_require__(42);
+  window.Popper = __webpack_require__(40).default;
+  window.$ = window.jQuery = __webpack_require__(41);
 
   __webpack_require__(143);
 } catch (e) {}
@@ -64980,7 +65016,7 @@ module.exports = function(module) {
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(41), __webpack_require__(42)) :
+   true ? factory(exports, __webpack_require__(40), __webpack_require__(41)) :
   typeof define === 'function' && define.amd ? define(['exports', 'popper.js', 'jquery'], factory) :
   (factory((global.bootstrap = {}),global.Popper,global.jQuery));
 }(this, (function (exports,Popper,$) { 'use strict';
@@ -69239,7 +69275,7 @@ module.exports = __webpack_require__(145);
 
 
 var utils = __webpack_require__(5);
-var bind = __webpack_require__(43);
+var bind = __webpack_require__(42);
 var Axios = __webpack_require__(147);
 var defaults = __webpack_require__(28);
 
@@ -69274,9 +69310,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(47);
+axios.Cancel = __webpack_require__(46);
 axios.CancelToken = __webpack_require__(162);
-axios.isCancel = __webpack_require__(46);
+axios.isCancel = __webpack_require__(45);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -69619,7 +69655,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(45);
+var createError = __webpack_require__(44);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -70052,7 +70088,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(5);
 var transformData = __webpack_require__(159);
-var isCancel = __webpack_require__(46);
+var isCancel = __webpack_require__(45);
 var defaults = __webpack_require__(28);
 var isAbsoluteURL = __webpack_require__(160);
 var combineURLs = __webpack_require__(161);
@@ -70212,7 +70248,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(47);
+var Cancel = __webpack_require__(46);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.

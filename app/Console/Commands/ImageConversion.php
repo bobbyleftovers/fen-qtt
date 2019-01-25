@@ -59,5 +59,11 @@ class ImageConversion extends Command
 
         $this->info($lbTools->getWidth().' x '.$lbTools->getHeight().' '.$lbTools->cropPath);
         $lbTools->cleanup();
+
+        /**
+         * Storage::putFileAs('submissions', new File($saved_image_uri),$name);
+          *  $path = Storage::disk('public')->putFileAs('submissions', new File($saved_image_uri),$name);
+           * $url = Storage::disk('public')->url($name);
+         */
     }
 }

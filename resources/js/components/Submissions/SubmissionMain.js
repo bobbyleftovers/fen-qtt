@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Columns from 'react-bulma-components/lib/components/columns';
 import Box from 'react-bulma-components/lib/components/box';
 import Button from 'react-bulma-components/lib/components/button';
-import Loading from '../UI/Loading';
+// import Loading from '../UI/Loading';
 
 import Grid from '../Grid/Grid';
 
@@ -16,14 +16,12 @@ class SubmissionMain extends Component{
             activeConfig:null,
             filename:'',
             image:null,
-            imagetest:null,
             updating:false
         };
         this.updateFromActiveConfig = this.updateFromActiveConfig.bind(this);
     }
 
     componentWillMount(){
-        console.log('image id',this.props.match.params.id);
         if(this.props.match.params.id){
             this.getImageData();
         }
@@ -31,11 +29,11 @@ class SubmissionMain extends Component{
     }
 
     updateFromActiveConfig(){
-        console.log('props',this.props);
+        // console.log('props',this.props);
         this.setState({updating:true})
         axios.post('/update/' + this.props.match.params.id,{id:this.props.match.params.id})
             .then(res => {
-                console.log('ok',res.data);
+                // console.log('ok',res.data);
                 
                 this.setState({
                     updating:false,
@@ -84,13 +82,13 @@ class SubmissionMain extends Component{
     }
 
     recordAdjustments(){
-        console.log('click');
+        // console.log('click');
     }
 
     getActiveConfig(){
         axios.get('/active-config')
         .then(res => {
-            console.log('active',res.data);
+            // console.log('active',res.data);
             this.setState({activeConfig:res.data})
         })
         .catch(error => {
@@ -136,12 +134,14 @@ class SubmissionMain extends Component{
     getImageData(){
         axios.post('/get-image',{id:this.props.match.params.id})
         .then(res => {
+            console.log(res.data)
             this.setState({
                 config:res.data.config,
-                filename:res.data.cropped_image,
+                original_path:res.data.original_path,
+                filename:res.data.filename,
                 image:JSON.parse(res.data.image_json)
             });
-            // console.log(this.state);
+            console.log(this.state.image);
         })
         .catch(error => {
             // log out the error
@@ -185,53 +185,54 @@ class SubmissionMain extends Component{
     
     render(){
         let grid = null;
+        let image = null;
+        let configInfo = null;
         if(this.state.image && this.state.config){
-            grid = <Grid map={this.state.image} config={this.state.config}/>
+            image = <img src={'/storage/' + this.state.original_path} style={{width:'100%'}}/>
+            configInfo = (
+                <pre>
+                    <code>ID: {this.state.config.id}</code><br />
+                    <code>Name: {this.state.config.name}</code><br />
+                    <code>Rows: {this.state.config.rows}</code><br />
+                    <code>Columns: {this.state.config.columns}</code><br />
+                    <code>Dimmer : {this.state.config.dimmer_levels} levels</code><br />
+                </pre>
+            );
+            
+            // determine some dimensions (we don't need all of these atm but we may later on)
+            const aspectRatio = this.state.config.rows/this.state.config.columns;
+            const imgWidth = document.querySelector('.grid-wrap').offsetWidth;
+            const cellWidth = imgWidth/this.state.config.columns;
+            const imgHeight = cellWidth * aspectRatio * this.state.config.columns;
+            const cellHeight = imgHeight/this.state.config.rows
+            
+            grid = <Grid map={this.state.image} config={this.state.config} cellWidth={cellWidth} cellHeight={cellHeight}/>
         }
-        let updater = null;
+        // let updater = null;
         return (
             <div>
-                <pre>
-                    <code>
-                        {JSON.stringify(this.state.config, null, 2)}
-                    </code><br/>
-                    <code>
-                        {JSON.stringify(this.state.updating, null, 2)}
-                    </code>
-                </pre>
                 <Columns>
                     <Columns.Column>
-                        <img src={'/' + this.state.filename} className="column" style={{width:'100%'}}/>
-                    </Columns.Column>
-                    <Columns.Column>
-                        <div className="grid-wrap">
-                            {grid}
-                        </div>
+                        <h1 className="title">Results for {this.state.filename}</h1>
                     </Columns.Column>
                 </Columns>
                 <Columns>
                     <Columns.Column>
                         <Box>
+                            <h2 className="subtitle">Config</h2>
+                            {configInfo}
+                            <hr/>
                             <Button onClick={this.updateFromActiveConfig}>Update To Active Config</Button>
                             <Button onClick={this.recordAdjustments}>Record Image Adjustments</Button>
                         </Box>
                     </Columns.Column>
+                    <Columns.Column>
+                        {image}
+                    </Columns.Column>
                 </Columns>
                 <Columns>
-                    <Columns.Column>
-                        <pre>
-                            <code>
-                                {JSON.stringify(this.state.image, null, 2)}
-                            </code>
-                        </pre>
-                    </Columns.Column>
-                    
-                    <Columns.Column>
-                        <pre>
-                            <code>
-                                {JSON.stringify(this.state.imagetest, null, 2)}
-                            </code>
-                        </pre>
+                    <Columns.Column className="grid-wrap">
+                        {grid}
                     </Columns.Column>
                 </Columns>
             </div>  

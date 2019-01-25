@@ -10,7 +10,7 @@ class ProjectMenuItem extends Component {
 					<div className="collection-link">
 						<img
 							className="collection-image"
-							src={'/images/' + this.props.entry.filename }/>
+							src={'/storage/'+this.props.entry.original_path}/>
 					</div>
 					<div className="collection-title">
 						<h3 className="subtitle is-4">{this.props.entry.filename}</h3>

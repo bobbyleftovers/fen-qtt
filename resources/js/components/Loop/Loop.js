@@ -70,7 +70,6 @@ class Loop extends Component{
         ));
         return (
             <Columns>{entries}</Columns>
-            
         );
     }
 }

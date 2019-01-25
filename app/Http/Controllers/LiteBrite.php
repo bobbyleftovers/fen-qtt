@@ -67,13 +67,18 @@ class LiteBrite extends Controller
                 $constraint->aspectRatio();
             })->save(public_path('images/'.$name));
             $saved_image_uri = $upload->dirname.'/'.$upload->basename;
-            $path = Storage::putFileAs('submissions', new File($saved_image_uri),$name);
+            
+            // not sure which will be best, so for now store in two places:
+            Storage::disk('public')->putFileAs('submissions', new File($saved_image_uri),$name); // to public directory for frontend
+            $path = Storage::putFileAs('submissions', new File($saved_image_uri),$name); // for backend manipulation
+            $url = Storage::disk('public')->url($name);
+            Log::notice($path.' '.$url);
             
             // set up the liteBrite entry and save
             $liteBrite = new LiteBriteImages;
             $liteBrite->config_id = $config->id;
             $liteBrite->filename = $info['name'];
-            $liteBrite->original_path = $path;
+            $liteBrite->original_path = $path; // '/storage/'.$path;
             $liteBrite->save();
 
             // clean up intervention stuff
@@ -160,30 +165,22 @@ class LiteBrite extends Controller
         
         $liteBrite = LiteBriteImages::where('id',$request->get('id'))
             ->first();
-        // $image_data['image'] = [
-        //     'id' => $liteBrite->id,
-        //     'config_id' => $config->id,
-        //     'width' => $width,
-        //     'height' => $height,
-        //     'cellHeight' => $ysliceheight,
-        //     'cellWidth' => $xslicewidth
-        // ];
+            
         $lb = new LiteBriteTools($liteBrite,$config);
-        // LiteBriteImages::where('id',$request->get('id'))
-        //     ->update([
-        //         'config_id' => $config->id,
-        //         'json_status' => 'pending',
-        //         'image_json' =>  json_encode($lb->calculateSegments())
-        //     ]);
+        LiteBriteImages::where('id',$request->get('id'))
+            ->update([
+                'config_id' => $config->id,
+                'json_status' => 'pending',
+            ]);
 
         
 
         // Log it out 
-        // Log::info('LiteBrite entry updated:'.$liteBrite->id.', JSON pending. Config ID is '.$config->id);
+        Log::info('LiteBrite entry updated:'.$liteBrite->id.', JSON pending. Config ID is '.$config->id);
 
         // start the rebuild process if needed and emit json event
         // event(new ImageAdded($liteBrite));
-        $segments = $lb->calculateSegments();
+        // $segments = $lb->calculateSegments();
         $lb->cleanup();
         return response()->json($segments);
     }
