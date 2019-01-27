@@ -165,24 +165,20 @@ class LiteBrite extends Controller
         
         $liteBrite = LiteBriteImages::where('id',$request->get('id'))
             ->first();
-            
-        $lb = new LiteBriteTools($liteBrite,$config);
+
+        $lb = new LiteBriteTools($liteBrite->original_path,$config);
         LiteBriteImages::where('id',$request->get('id'))
             ->update([
                 'config_id' => $config->id,
                 'json_status' => 'pending',
             ]);
 
-        
-
         // Log it out 
         Log::info('LiteBrite entry updated:'.$liteBrite->id.', JSON pending. Config ID is '.$config->id);
 
         // start the rebuild process if needed and emit json event
-        // event(new ImageAdded($liteBrite));
-        // $segments = $lb->calculateSegments();
-        $lb->cleanup();
-        return response()->json($segments);
+        event(new ImageAdded($liteBrite));
+        return response()->json($liteBrite);
     }
 
     // Update the user on wether the json build has finished

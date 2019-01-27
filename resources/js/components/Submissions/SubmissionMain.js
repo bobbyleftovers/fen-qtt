@@ -29,17 +29,13 @@ class SubmissionMain extends Component{
     }
 
     updateFromActiveConfig(){
-        // console.log('props',this.props);
         this.setState({updating:true})
         axios.post('/update/' + this.props.match.params.id,{id:this.props.match.params.id})
             .then(res => {
-                // console.log('ok',res.data);
-                
                 this.setState({
                     updating:false,
                     image:res.data
                 })
-                // this.getImageData();
             })
             .catch(error => {
                 // log out the error
@@ -82,13 +78,12 @@ class SubmissionMain extends Component{
     }
 
     recordAdjustments(){
-        // console.log('click');
+        console.log('click');
     }
 
     getActiveConfig(){
         axios.get('/active-config')
         .then(res => {
-            // console.log('active',res.data);
             this.setState({activeConfig:res.data})
         })
         .catch(error => {
@@ -134,14 +129,12 @@ class SubmissionMain extends Component{
     getImageData(){
         axios.post('/get-image',{id:this.props.match.params.id})
         .then(res => {
-            console.log(res.data)
             this.setState({
                 config:res.data.config,
                 original_path:res.data.original_path,
                 filename:res.data.filename,
                 image:JSON.parse(res.data.image_json)
             });
-            console.log(this.state.image);
         })
         .catch(error => {
             // log out the error
@@ -206,7 +199,7 @@ class SubmissionMain extends Component{
             const imgHeight = cellWidth * aspectRatio * this.state.config.columns;
             const cellHeight = imgHeight/this.state.config.rows
             
-            grid = <Grid map={this.state.image} config={this.state.config} cellWidth={cellWidth} cellHeight={cellHeight}/>
+            grid = <Grid map={this.state.image} config={this.state.config}/>
         }
         // let updater = null;
         return (

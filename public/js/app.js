@@ -47149,16 +47149,12 @@ var SubmissionMain = function (_Component) {
         value: function updateFromActiveConfig() {
             var _this2 = this;
 
-            // console.log('props',this.props);
             this.setState({ updating: true });
             axios.post('/update/' + this.props.match.params.id, { id: this.props.match.params.id }).then(function (res) {
-                // console.log('ok',res.data);
-
                 _this2.setState({
                     updating: false,
                     image: res.data
                 });
-                // this.getImageData();
             }).catch(function (error) {
                 // log out the error
                 var message = 'ERROR: ';
@@ -47200,7 +47196,7 @@ var SubmissionMain = function (_Component) {
     }, {
         key: 'recordAdjustments',
         value: function recordAdjustments() {
-            // console.log('click');
+            console.log('click');
         }
     }, {
         key: 'getActiveConfig',
@@ -47208,7 +47204,6 @@ var SubmissionMain = function (_Component) {
             var _this3 = this;
 
             axios.get('/active-config').then(function (res) {
-                // console.log('active',res.data);
                 _this3.setState({ activeConfig: res.data });
             }).catch(function (error) {
                 // log out the error
@@ -47254,14 +47249,12 @@ var SubmissionMain = function (_Component) {
             var _this4 = this;
 
             axios.post('/get-image', { id: this.props.match.params.id }).then(function (res) {
-                console.log(res.data);
                 _this4.setState({
                     config: res.data.config,
                     original_path: res.data.original_path,
                     filename: res.data.filename,
                     image: JSON.parse(res.data.image_json)
                 });
-                console.log(_this4.state.image);
             }).catch(function (error) {
                 // log out the error
                 var message = 'ERROR: ';
@@ -47309,7 +47302,7 @@ var SubmissionMain = function (_Component) {
             if (this.state.image && this.state.config) {
                 image = _react2.default.createElement('img', { src: '/storage/' + this.state.original_path, style: { width: '100%' }, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 191
+                        lineNumber: 184
                     }
                 });
                 configInfo = _react2.default.createElement(
@@ -47317,7 +47310,7 @@ var SubmissionMain = function (_Component) {
                     {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 193
+                            lineNumber: 186
                         }
                     },
                     _react2.default.createElement(
@@ -47325,7 +47318,7 @@ var SubmissionMain = function (_Component) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 194
+                                lineNumber: 187
                             }
                         },
                         'ID: ',
@@ -47334,7 +47327,7 @@ var SubmissionMain = function (_Component) {
                     _react2.default.createElement('br', {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 194
+                            lineNumber: 187
                         }
                     }),
                     _react2.default.createElement(
@@ -47342,7 +47335,7 @@ var SubmissionMain = function (_Component) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 195
+                                lineNumber: 188
                             }
                         },
                         'Name: ',
@@ -47351,7 +47344,7 @@ var SubmissionMain = function (_Component) {
                     _react2.default.createElement('br', {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 195
+                            lineNumber: 188
                         }
                     }),
                     _react2.default.createElement(
@@ -47359,7 +47352,7 @@ var SubmissionMain = function (_Component) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 196
+                                lineNumber: 189
                             }
                         },
                         'Rows: ',
@@ -47368,7 +47361,7 @@ var SubmissionMain = function (_Component) {
                     _react2.default.createElement('br', {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 196
+                            lineNumber: 189
                         }
                     }),
                     _react2.default.createElement(
@@ -47376,7 +47369,7 @@ var SubmissionMain = function (_Component) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 197
+                                lineNumber: 190
                             }
                         },
                         'Columns: ',
@@ -47385,7 +47378,7 @@ var SubmissionMain = function (_Component) {
                     _react2.default.createElement('br', {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 197
+                            lineNumber: 190
                         }
                     }),
                     _react2.default.createElement(
@@ -47393,7 +47386,7 @@ var SubmissionMain = function (_Component) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 198
+                                lineNumber: 191
                             }
                         },
                         'Dimmer : ',
@@ -47403,7 +47396,7 @@ var SubmissionMain = function (_Component) {
                     _react2.default.createElement('br', {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 198
+                            lineNumber: 191
                         }
                     })
                 );
@@ -47415,9 +47408,9 @@ var SubmissionMain = function (_Component) {
                 var imgHeight = cellWidth * aspectRatio * this.state.config.columns;
                 var cellHeight = imgHeight / this.state.config.rows;
 
-                grid = _react2.default.createElement(_Grid2.default, { map: this.state.image, config: this.state.config, cellWidth: cellWidth, cellHeight: cellHeight, __source: {
+                grid = _react2.default.createElement(_Grid2.default, { map: this.state.image, config: this.state.config, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 209
+                        lineNumber: 202
                     }
                 });
             }
@@ -47427,7 +47420,7 @@ var SubmissionMain = function (_Component) {
                 {
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 213
+                        lineNumber: 206
                     }
                 },
                 _react2.default.createElement(
@@ -47435,7 +47428,7 @@ var SubmissionMain = function (_Component) {
                     {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 214
+                            lineNumber: 207
                         }
                     },
                     _react2.default.createElement(
@@ -47443,14 +47436,14 @@ var SubmissionMain = function (_Component) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 215
+                                lineNumber: 208
                             }
                         },
                         _react2.default.createElement(
                             'h1',
                             { className: 'title', __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 216
+                                    lineNumber: 209
                                 }
                             },
                             'Results for ',
@@ -47463,7 +47456,7 @@ var SubmissionMain = function (_Component) {
                     {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 219
+                            lineNumber: 212
                         }
                     },
                     _react2.default.createElement(
@@ -47471,7 +47464,7 @@ var SubmissionMain = function (_Component) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 220
+                                lineNumber: 213
                             }
                         },
                         _react2.default.createElement(
@@ -47479,14 +47472,14 @@ var SubmissionMain = function (_Component) {
                             {
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 221
+                                    lineNumber: 214
                                 }
                             },
                             _react2.default.createElement(
                                 'h2',
                                 { className: 'subtitle', __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 222
+                                        lineNumber: 215
                                     }
                                 },
                                 'Config'
@@ -47495,14 +47488,14 @@ var SubmissionMain = function (_Component) {
                             _react2.default.createElement('hr', {
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 224
+                                    lineNumber: 217
                                 }
                             }),
                             _react2.default.createElement(
                                 _button2.default,
                                 { onClick: this.updateFromActiveConfig, __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 225
+                                        lineNumber: 218
                                     }
                                 },
                                 'Update To Active Config'
@@ -47511,7 +47504,7 @@ var SubmissionMain = function (_Component) {
                                 _button2.default,
                                 { onClick: this.recordAdjustments, __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 226
+                                        lineNumber: 219
                                     }
                                 },
                                 'Record Image Adjustments'
@@ -47523,7 +47516,7 @@ var SubmissionMain = function (_Component) {
                         {
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 229
+                                lineNumber: 222
                             }
                         },
                         image
@@ -47534,14 +47527,14 @@ var SubmissionMain = function (_Component) {
                     {
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 233
+                            lineNumber: 226
                         }
                     },
                     _react2.default.createElement(
                         _columns2.default.Column,
                         { className: 'grid-wrap', __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 234
+                                lineNumber: 227
                             }
                         },
                         grid
@@ -47568,6 +47561,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 var _jsxFileName = '/Users/robertrae/Sites/Enjoy/fen-qtt-server/resources/js/components/Grid/Grid.js';
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -47578,68 +47573,122 @@ var _columns2 = _interopRequireDefault(_columns);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Grid = function Grid(props) {
-    // console.log('grid',props.map,props.config);
-    var gridItems = false;
-    if (props.map) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-        gridItems = props.map.map(function (row, index) {
-            var colItems = [];
-            Object.entries(row).forEach(function (cell, index) {
-                cell = cell[1];
-                // const textColor = 255 - cell.grey;
-                // const cellH = props.map.image.height / props.config.rows;
-                colItems.push(_react2.default.createElement('div', { className: 'grid-cell', key: index, style: {
-                        background: 'rgb(' + cell.grey + ',' + cell.grey + ',' + cell.grey + ')',
-                        height: parseInt(props.cellWidth) + 'px',
-                        display: 'flex',
-                        justifyContent: 'center'
-                    }, __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 17
-                    }
-                }));
-            });
-            // FOR LATER, DIMMER LEVELS DIV: <div className="dimmer-level" style={{color:'rgb(' + textColor + ',' + textColor + ',' + textColor + ')'}}>{cell.dimmer}</div>
-            // console.log('items',colItems);
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-            return _react2.default.createElement(
-                _columns2.default.Column,
-                { key: index, className: 'grid-column', __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 29
-                    }
-                },
-                colItems
-            );
-        });
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Grid = function (_Component) {
+    _inherits(Grid, _Component);
+
+    function Grid(props) {
+        _classCallCheck(this, Grid);
+
+        var _this = _possibleConstructorReturn(this, (Grid.__proto__ || Object.getPrototypeOf(Grid)).call(this, props));
+
+        _this.state = {
+            size: document.querySelector('.grid-wrap').offsetWidth / _this.props.config.columns
+        };
+        return _this;
     }
 
-    return _react2.default.createElement(
-        'div',
-        { className: 'grid', __source: {
-                fileName: _jsxFileName,
-                lineNumber: 37
+    _createClass(Grid, [{
+        key: 'updateDimensions',
+        value: function updateDimensions() {
+            var updatedSize = document.querySelector('.grid-cell').offsetWidth;
+            this.setState({
+                size: updatedSize
+            });
+        }
+
+        /**
+         * Add event listener
+         */
+
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.updateDimensions();
+            window.addEventListener("resize", this.updateDimensions.bind(this));
+        }
+
+        /**
+         * Remove event listener
+         */
+
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            window.removeEventListener("resize", this.updateDimensions.bind(this));
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            var gridItems = false;
+            if (this.props.map) {
+
+                gridItems = this.props.map.map(function (row, index) {
+                    var colItems = [];
+                    Object.entries(row).forEach(function (cell, index) {
+                        cell = cell[1];
+                        colItems.push(_react2.default.createElement('div', { className: 'grid-cell', key: index, style: {
+                                background: 'rgb(' + cell.grey + ',' + cell.grey + ',' + cell.grey + ')',
+                                height: _this2.state.size + 'px',
+                                display: 'flex',
+                                justifyContent: 'center'
+                            }, __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 43
+                            }
+                        }));
+                    });
+                    // FOR LATER, DIMMER LEVELS DIV: <div className="dimmer-level" style={{color:'rgb(' + textColor + ',' + textColor + ',' + textColor + ')'}}>{cell.dimmer}</div>
+                    // console.log('items',colItems);
+
+                    return _react2.default.createElement(
+                        _columns2.default.Column,
+                        { key: index, className: 'grid-column', __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 55
+                            }
+                        },
+                        colItems
+                    );
+                });
             }
-        },
-        _react2.default.createElement('br', {
-            __source: {
-                fileName: _jsxFileName,
-                lineNumber: 38
-            }
-        }),
-        _react2.default.createElement(
-            _columns2.default,
-            {
-                __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 39
-                }
-            },
-            gridItems
-        )
-    );
-};
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'grid', __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 63
+                    }
+                },
+                _react2.default.createElement('br', {
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 64
+                    }
+                }),
+                _react2.default.createElement(
+                    _columns2.default,
+                    {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 65
+                        }
+                    },
+                    gridItems
+                )
+            );
+        }
+    }]);
+
+    return Grid;
+}(_react.Component);
 
 exports.default = Grid;
 
