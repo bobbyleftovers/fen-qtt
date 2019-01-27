@@ -36,12 +36,12 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily'],
+            'channels' => ['single','slack'],
         ],
 
         'single' => [
             'driver' => 'single',
-            'path' => storage_path('logs/laravel.log'),
+            'path' => storage_path('logs/lite-brite.log'),
             'level' => 'debug',
         ],
 
@@ -56,8 +56,8 @@ return [
             'driver' => 'slack',
             'url' => env('LOG_SLACK_WEBHOOK_URL'),
             'username' => 'Laravel Log',
-            'emoji' => ':boom:',
-            'level' => 'critical',
+            'emoji' => ':poop:',
+            'level' => 'debug',
         ],
 
         'papertrail' => [

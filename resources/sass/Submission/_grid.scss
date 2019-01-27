@@ -1,0 +1,9 @@
+.grid-column.column{
+    padding:0;
+    .grid-cell{
+        width:100%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+}

@@ -40,7 +40,12 @@ return [
     | Supported Drivers: "local", "ftp", "sftp", "s3", "rackspace"
     |
     */
+    // Storage::putFileAs('submissions', new File($saved_image_uri),$name);
+    // $path = Storage::disk('public')->putFileAs('submissions', new File($saved_image_uri),$name);
+    // $url = Storage::disk('public')->url($name);
 
+    // $saved_image_uri = $upload->dirname.'/'.$upload->basename;
+    //         $path = Storage::putFileAs('submissions', new File($saved_image_uri),$name);
     'disks' => [
 
         'local' => [
@@ -51,7 +56,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL').'/storage/submissions',
             'visibility' => 'public',
         ],
 
