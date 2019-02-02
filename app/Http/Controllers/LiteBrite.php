@@ -201,9 +201,13 @@ class LiteBrite extends Controller
     }
 
     // API TESTING AREA
-    public function apitest()
+    public function apigettest()
     {
         return response()->json(['one', 'two', 'three']);
+    }
+    public function apiposttest(Request $request)
+    {
+        return response()->json([$request['id']]);
     }
 
 }
