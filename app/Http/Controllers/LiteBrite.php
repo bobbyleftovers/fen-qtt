@@ -26,11 +26,12 @@ class LiteBrite extends Controller
         return view('main');
     }
 
-    public function entries(){
+    public function entries()
+    {
         // get submissions
         $items = LiteBriteImages::with('config')
-        ->get()
-        ->toJson();
+            ->get()
+            ->toJson();
         return $items;
     }
 
@@ -53,11 +54,11 @@ class LiteBrite extends Controller
     public function store(Request $request)
     {   
         // get the current active grid config
-        $config = LiteBriteConfig::where('is_active',1)
+        $config = LiteBriteConfig::where('is_active', 1)
             ->first();
 
         // make sure we have a file
-        if($request->get('file')){
+        if ($request->get('file')) {
 
             // save the image using intervention/image
             $info = $request->get('info');;
@@ -65,14 +66,14 @@ class LiteBrite extends Controller
             $upload = Image::make($request->get('file'));
             $upload->resize(600, 600, function ($constraint) {
                 $constraint->aspectRatio();
-            })->save(public_path('images/'.$name));
-            $saved_image_uri = $upload->dirname.'/'.$upload->basename;
+            })->save(public_path('images/' . $name));
+            $saved_image_uri = $upload->dirname . '/' . $upload->basename;
             
             // not sure which will be best, so for now store in two places:
-            Storage::disk('public')->putFileAs('submissions', new File($saved_image_uri),$name); // to public directory for frontend
-            $path = Storage::putFileAs('submissions', new File($saved_image_uri),$name); // for backend manipulation
+            Storage::disk('public')->putFileAs('submissions', new File($saved_image_uri), $name); // to public directory for frontend
+            $path = Storage::putFileAs('submissions', new File($saved_image_uri), $name); // for backend manipulation
             $url = Storage::disk('public')->url($name);
-            Log::notice($path.' '.$url);
+            Log::notice($path . ' ' . $url);
             
             // set up the liteBrite entry and save
             $liteBrite = new LiteBriteImages;
@@ -86,7 +87,7 @@ class LiteBrite extends Controller
             unlink($saved_image_uri);
 
             // Log it out 
-            Log::notice('LiteBrite entry created: '.$liteBrite->id.', JSON pending. Config ID is '.$config->id);
+            Log::notice('LiteBrite entry created: ' . $liteBrite->id . ', JSON pending. Config ID is ' . $config->id);
 
             // Emit json event
             event(new ImageAdded($liteBrite));
@@ -136,7 +137,7 @@ class LiteBrite extends Controller
     public function getImage(Request $request)
     {
         $item = LiteBriteImages::with('config')->find($request->get('id'))
-        ->toJson();
+            ->toJson();
         return $item;
     }
 
@@ -160,21 +161,21 @@ class LiteBrite extends Controller
      */
     public function update(Request $request)
     {
-        $config = LiteBriteConfig::where('is_active',1)
-            ->first();
-        
-        $liteBrite = LiteBriteImages::where('id',$request->get('id'))
+        $config = LiteBriteConfig::where('is_active', 1)
             ->first();
 
-        $lb = new LiteBriteTools($liteBrite->original_path,$config);
-        LiteBriteImages::where('id',$request->get('id'))
+        $liteBrite = LiteBriteImages::where('id', $request->get('id'))
+            ->first();
+
+        $lb = new LiteBriteTools($liteBrite->original_path, $config);
+        LiteBriteImages::where('id', $request->get('id'))
             ->update([
                 'config_id' => $config->id,
                 'json_status' => 'pending',
             ]);
 
         // Log it out 
-        Log::info('LiteBrite entry updated:'.$liteBrite->id.', JSON pending. Config ID is '.$config->id);
+        Log::info('LiteBrite entry updated:' . $liteBrite->id . ', JSON pending. Config ID is ' . $config->id);
 
         // start the rebuild process if needed and emit json event
         event(new ImageAdded($liteBrite));
@@ -182,7 +183,8 @@ class LiteBrite extends Controller
     }
 
     // Update the user on wether the json build has finished
-    public function check_json_status($request){
+    public function check_json_status($request)
+    {
         $liteBrite = LiteBriteImages::where('id', $request->get('id'))->first();
         return response()->json($liteBrite->json_status); // not tested yet
     }
@@ -198,113 +200,10 @@ class LiteBrite extends Controller
         //
     }
 
-    // UTILITIES
-
-    // public function calculate(LiteBriteImages $liteBrite, LiteBriteConfig $config){
-        
-    //     // set up an object to collect data from this process
-    //     $image_data = [];
-    //     $pathinfo = pathinfo('images'.$liteBrite->filename);
-        
-    //     // open file a image resource
-    //     $img = Image::make('images/'.$liteBrite->filename);
-        
-    //     $img->backup();
-
-    //     // dimensions
-    //     $width = $img->width();
-    //     $height = $img->height();
-    //     $rows = $config->rows;
-    //     $columns = $config->columns;
-    //     $aspect_ratio = $rows/$columns;
-
-    //     // crop the image to match the grids aspect ratio
-    //     // $img->crop($xslicewidth, $ysliceheight, $xpos, $ypos);
-
-    //     // crop start pos.
-    //     $xpos = 0;
-    //     $ypos = 0;
-
-    //     // current slice indeces
-    //     $xslice = 0;
-    //     $yslice = 0;
-
-    //     // set crop size
-    //     $xslicewidth = (int)round($width/$rows,0,PHP_ROUND_HALF_UP);
-    //     $ysliceheight = (int)round($height/$columns,0,PHP_ROUND_HALF_UP);
-
-    //     // move this to store method and create new columns, json should only be for the values
-    //     $image_data['image'] = [
-    //         'id' => $liteBrite->id,
-    //         'config_id' => $config->id,
-    //         'width' => $width,
-    //         'height' => $height,
-    //         'cellHeight' => $ysliceheight,
-    //         'cellWidth' => $xslicewidth
-    //     ];
-
-    //     while($xpos <= ($width - $xslicewidth)){
-    //         while($ypos <= ($height - $ysliceheight)){
-                
-    //             // we'll be storing the data in here
-    //             $value = [];
-    //             $filepath = 'images/'.$pathinfo['filename'].'-'.$xpos.'-'.$ypos.'.jpg';
-
-    //             // crop image
-    //             $img->crop($xslicewidth, $ysliceheight, $xpos, $ypos); // get rid of this
-    //             $img->save($filepath);
-                
-    //             // get average color
-    //             $src = imagecreatefromjpeg($filepath);
-
-    //             // Greyscale operation
-    //             imagecopymergegray($src, $src, 0, 0, 0, 0, imagesx($src), imagesy($src), 0);
-                
-    //             $avgImage = new AverageColorTool('',$src);
-    //             $rgb = $avgImage->averageImage();
-    //             $value = [
-    //                 'x' => $xslice,
-    //                 'y' => $yslice,
-    //                 'rgb' => $rgb,
-    //                 'grey'=> $rgb['red'],
-    //                 'dimmer' => $this->setDimmerLevel($rgb['red'],$config)
-    //             ];
-
-    //             // get rid of the extra file
-    //             unlink($filepath);
-
-    //             // reset, increment Y variables
-    //             $img->reset();
-    //             $yslice++;
-    //             $ypos = $ysliceheight * $yslice;
-
-    //             // store data to array
-    //             $image_data['values'][$xslice][] = $value;
-
-    //         }
-
-    //         // reset, increment X variables
-    //         $ypos = $yslice = 0;
-    //         $xslice++;
-    //         $xpos = $xslicewidth * $xslice;
-    //     }
-
-    //     return $image_data;
-    // }
-
-    public function start_php()
+    // API TESTING AREA
+    public function apitest()
     {
-
-       // get an image and config to test calculate with
-       $liteBrite = LiteBriteImages::find(1)->first();
-       $config = LiteBriteConfig::find(1)->first();
-       $this->calculate($liteBrite,$config);
-
-
-
-        return view('main');
-
+        return response()->json(['one', 'two', 'three']);
     }
 
-    
 }
