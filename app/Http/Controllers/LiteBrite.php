@@ -113,8 +113,7 @@ class LiteBrite extends Controller
         // ->withData( array( 'test' => 'Bar' ) )
         // ->post();
 
-        // return response()->json([$request->get('path'),$response]);
-        return;
+        return response()->json(['one', 'two', 'three']);
     }
 
     /**

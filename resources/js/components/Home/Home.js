@@ -9,17 +9,16 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            response: null
-        }
+            response: null,
+        };
     }
-    
+
     render() {
         let responseText = '';
-        if(this.state.response != null){
-            responseText = <p>{this.state.response}</p>
+        if (this.state.response != null) {
+            responseText = <p>{this.state.response}</p>;
         }
         return (
-                
             <div>
                 <Columns>
                     <Columns.Column>
@@ -29,7 +28,10 @@ class Home extends Component {
                             </div>
 
                             <div className="card-body">
-                                <h2 className="subtitle is-4">Upload a file and we'll put it up on the LiteBrite</h2>
+                                <h2 className="subtitle is-4">
+                                    Upload a file and we'll put it up on the
+                                    LiteBrite
+                                </h2>
                             </div>
                             <Uploader />
                         </Box>
@@ -43,7 +45,7 @@ class Home extends Component {
                             <h2 className="subtitle is-2">Previous Uploads</h2>
                         </Columns.Column>
                     </Columns>
-                    <Loop className="columns"/>
+                    <Loop className="columns" />
                 </div>
             </div>
         );
