@@ -112,7 +112,7 @@ class LiteBrite extends Controller
         // ->withFile( 'file', $request->get('path'), 'image/png', 'imageName1.png' )
         // ->withData( array( 'test' => 'Bar' ) )
         // ->post();
-
+        Log::info('Uploader hit');
         return response()->json(['one', 'two', 'three']);
     }
 
