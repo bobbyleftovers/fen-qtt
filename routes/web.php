@@ -20,7 +20,7 @@ Route::post('/get-image', 'LiteBrite@getImage');
 // LiteBrite front-end setters
 Route::post('/store', 'LiteBrite@store');
 Route::post('/update/{id}', 'LiteBrite@update');
-Route::get('/uploader', 'LiteBrite@upload');
+Route::post('/uploader', 'LiteBrite@upload');
 Route::post('/delete/{id}', 'LiteBrite@destroy');
 
 // lb admin pages
