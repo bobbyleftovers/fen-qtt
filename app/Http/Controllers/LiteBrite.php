@@ -119,7 +119,7 @@ class LiteBrite extends Controller
         $upload = Image::make($request->get('base64'));
         $upload->resize(600, 600, function ($constraint) {
             $constraint->aspectRatio();
-        })->save(public_path('images/' . $name . 'jpg'));
+        })->save(public_path('images/' . $name));
         $saved_image_uri = $upload->dirname . '/' . $upload->basename;
 
         // not sure which will be best, so for now store in two places:
