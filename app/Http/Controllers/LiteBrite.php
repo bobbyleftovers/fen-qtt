@@ -113,7 +113,7 @@ class LiteBrite extends Controller
         // ->withData( array( 'test' => 'Bar' ) )
         // ->post();
         Log::info('Uploader hit');
-        return response()->json(['one', 'two', 'three']);
+        return response()->json($request);
     }
 
     /**
