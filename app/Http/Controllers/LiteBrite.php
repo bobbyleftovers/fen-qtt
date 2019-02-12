@@ -131,7 +131,7 @@ class LiteBrite extends Controller
         // set up the liteBrite entry and save
         $liteBrite = new LiteBriteImages;
         $liteBrite->config_id = $config->id;
-        $liteBrite->filename = $requerst['filename'];
+        $liteBrite->filename = $request['filename'];
         $liteBrite->original_path = $path; // '/storage/'.$path;
         $liteBrite->save();
 
