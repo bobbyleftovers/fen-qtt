@@ -145,7 +145,7 @@ class LiteBrite extends Controller
         // Emit json event
         event(new ImageAdded($liteBrite));
 
-        return response()->json([$liteBrite, $config]);
+        return response()->json($liteBrite);
     }
 
     /**
