@@ -107,12 +107,44 @@ class LiteBrite extends Controller
      * @return \Illuminate\Http\Response
      */
     public function upload(Request $request)
-    {   
-        // $response = Curl::to($request->get('url'))
-        // ->withFile( 'file', $request->get('path'), 'image/png', 'imageName1.png' )
-        // ->withData( array( 'test' => 'Bar' ) )
-        // ->post();
+    {
+
         Log::info('Uploader hit');
+
+        // get config
+        $config = LiteBriteConfig::where('is_active', 1)
+            ->first();
+
+        $name = $request['name'];
+        $upload = Image::make($request->get('base64'));
+        $upload->resize(600, 600, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save(public_path('images/' . $name));
+        $saved_image_uri = $upload->dirname . '/' . $upload->basename;
+
+        // not sure which will be best, so for now store in two places:
+        Storage::disk('public')->putFileAs('submissions', new File($saved_image_uri), $name); // to public directory for frontend
+        $path = Storage::putFileAs('submissions', new File($saved_image_uri), $name); // for backend manipulation
+        $url = Storage::disk('public')->url($name);
+        Log::notice($path . ' ' . $url);
+            
+        // set up the liteBrite entry and save
+        $liteBrite = new LiteBriteImages;
+        $liteBrite->config_id = $config->id;
+        $liteBrite->filename = $info['name'];
+        $liteBrite->original_path = $path; // '/storage/'.$path;
+        $liteBrite->save();
+
+        // clean up intervention stuff
+        $upload->destroy();
+        unlink($saved_image_uri);
+
+        // Log it out 
+        Log::notice('LiteBrite entry created: ' . $liteBrite->id . ', JSON pending. Config ID is ' . $config->id);
+
+        // Emit json event
+        event(new ImageAdded($liteBrite));
+
         return response()->json($request);
     }
 
