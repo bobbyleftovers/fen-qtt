@@ -115,7 +115,7 @@ class LiteBrite extends Controller
         $config = LiteBriteConfig::where('is_active', 1)
             ->first();
 
-        $name = $request['name'];
+        $name = $request['filename'];
         $upload = Image::make($request->get('base64'));
         $upload->resize(600, 600, function ($constraint) {
             $constraint->aspectRatio();
@@ -131,7 +131,7 @@ class LiteBrite extends Controller
         // set up the liteBrite entry and save
         $liteBrite = new LiteBriteImages;
         $liteBrite->config_id = $config->id;
-        $liteBrite->filename = $info['name'];
+        $liteBrite->filename = $requerst['filename'];
         $liteBrite->original_path = $path; // '/storage/'.$path;
         $liteBrite->save();
 
