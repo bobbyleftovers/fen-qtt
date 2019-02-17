@@ -18,6 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 // API calls
+Route::get('/get-json/{id}', 'LiteBrite@getJsonImage');
 Route::get('/test', 'LiteBrite@apigettest');
 Route::post('/test/{id}', 'LiteBrite@apiposttest');
 // Route::resource('lite_brite_iamge', 'liteBriteController');

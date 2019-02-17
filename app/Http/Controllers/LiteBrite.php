@@ -213,13 +213,6 @@ class LiteBrite extends Controller
         return response()->json($liteBrite);
     }
 
-    // Update the user on wether the json build has finished
-    public function check_json_status($request)
-    {
-        $liteBrite = LiteBriteImages::where('id', $request->get('id'))->first();
-        return response()->json($liteBrite->json_status); // not tested yet
-    }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -231,7 +224,7 @@ class LiteBrite extends Controller
         //
     }
 
-    // API TESTING AREA
+    // API
     public function apigettest()
     {
         return response()->json(['one', 'two', 'three']);
@@ -239,6 +232,19 @@ class LiteBrite extends Controller
     public function apiposttest(Request $request)
     {
         return response()->json([$request['id']]);
+    }
+    // Update the user on wether the json build has finished
+    public function check_json_status($request)
+    {
+        $liteBrite = LiteBriteImages::where('id', $request->get('id'))->first();
+        return response()->json($liteBrite->json_status); // not tested yet
+    }
+    public function getJsonImage(Request $request)
+    {
+        $image = LiteBriteImages::with('config')
+            ->where('id', $request['id'])
+            ->first();
+        return response()->json(json_encode($image->image_json));
     }
 
 }
