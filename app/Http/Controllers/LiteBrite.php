@@ -241,6 +241,7 @@ class LiteBrite extends Controller
     }
     public function getJsonImage(Request $request)
     {
+        Log::notice('Getting JSON for image with ID: ' . $request['id']);
         $image = LiteBriteImages::with('config')
             ->where('id', $request['id'])
             ->first();
