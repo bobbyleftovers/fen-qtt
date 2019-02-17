@@ -244,6 +244,9 @@ class LiteBrite extends Controller
         $image = LiteBriteImages::with('config')
             ->where('id', $request['id'])
             ->first();
+        if (!is_object($image)) {
+            return response()->json(['error' => 'No resources found']);
+        }
         return response()->json(json_encode($image->image_json));
     }
 
