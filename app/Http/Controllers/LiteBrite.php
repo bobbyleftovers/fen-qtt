@@ -247,7 +247,7 @@ class LiteBrite extends Controller
         if (!is_object($image)) {
             return response()->json(['error' => 'No resources found']);
         }
-        return response()->json(json_encode($image->id));
+        return response()->json(json_encode(['json' => $image->id]));
     }
 
 }
