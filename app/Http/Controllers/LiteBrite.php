@@ -243,7 +243,7 @@ class LiteBrite extends Controller
     {
         Log::notice('Getting JSON for image with ID: ' . $request['id']);
         $image = LiteBriteImages::with('config')
-            ->where('id', $request['id'])
+            // ->where('id', $request['id'])
             ->first();
         if (!is_object($image)) {
             return response()->json(['error' => 'No resources found']);
