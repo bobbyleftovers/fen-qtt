@@ -52,7 +52,7 @@ class LiteBrite extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         // get the current active grid config
         $config = LiteBriteConfig::where('is_active', 1)
             ->first();
@@ -68,13 +68,13 @@ class LiteBrite extends Controller
                 $constraint->aspectRatio();
             })->save(public_path('images/' . $name));
             $saved_image_uri = $upload->dirname . '/' . $upload->basename;
-            
+
             // not sure which will be best, so for now store in two places:
             Storage::disk('public')->putFileAs('submissions', new File($saved_image_uri), $name); // to public directory for frontend
             $path = Storage::putFileAs('submissions', new File($saved_image_uri), $name); // for backend manipulation
             $url = Storage::disk('public')->url($name);
             Log::notice($path . ' ' . $url);
-            
+
             // set up the liteBrite entry and save
             $liteBrite = new LiteBriteImages;
             $liteBrite->config_id = $config->id;
@@ -97,7 +97,6 @@ class LiteBrite extends Controller
 
         // if no file, return false
         return false;
-
     }
 
     /**
@@ -127,7 +126,7 @@ class LiteBrite extends Controller
         $path = Storage::putFileAs('submissions', new File($saved_image_uri), $name); // for backend manipulation
         $url = Storage::disk('public')->url($name);
         Log::notice($path . ' ' . $url);
-            
+
         // set up the liteBrite entry and save
         $liteBrite = new LiteBriteImages;
         $liteBrite->config_id = $config->id;
@@ -248,7 +247,6 @@ class LiteBrite extends Controller
         if (!is_object($image)) {
             return response()->json(['error' => 'No resources found']);
         }
-        return response()->json(['json' => $image->image_json]);
+        return response()->json($image);
     }
-
 }
