@@ -1,4 +1,3 @@
-
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
@@ -11,6 +10,9 @@
 
 // UI
 @import './UI/ui';
+
+// Header
+@import './Header/nav';
 
 // Submissions
 @import './Submission/grid';

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 
+import Header from './Header/Header';
 import Home from './Home/Home';
 import Config from './Config/Config';
 import SubmissionMain from './Submissions/SubmissionMain';
@@ -21,6 +22,7 @@ class Main extends Component {
         }
         return (
             <Container>
+                <Header />
                 <Route path="/" exact component={Home} />
                 <Route path="/config" exact component={Config} />
                 <Route path="/config/:id" component={Config} />

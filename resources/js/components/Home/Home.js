@@ -23,19 +23,9 @@ class Home extends Component {
                 <Columns>
                     <Columns.Column>
                         <Box>
-                            <div className="card-header">
-                                <h1 className="title is-1">LiteBrite</h1>
-                            </div>
-
-                            <div className="card-body">
-                                <h2 className="subtitle is-4">
-                                    Upload a file and we'll put it up on the
-                                    LiteBrite
-                                </h2>
-                            </div>
                             <Uploader />
+                            {responseText}
                         </Box>
-                        {responseText}
                     </Columns.Column>
                 </Columns>
                 <hr />

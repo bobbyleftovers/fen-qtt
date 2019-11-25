@@ -16,27 +16,27 @@ use App\Console\Commands\ImageCnversion;
 
 class ProcessImage implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    protected $liteBrite;
+  use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+  protected $liteBrite;
 
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct(LiteBriteImages $liteBrite)
-    {
-        $this->liteBrite = $liteBrite;
-    }
+  /**
+   * Create a new job instance.
+   *
+   * @return void
+   */
+  public function __construct(LiteBriteImages $liteBrite)
+  {
+    $this->liteBrite = $liteBrite;
+  }
 
-    /**
-     * Execute the job.
-     *
-     * @return void
-     */
-    public function handle()
-    {
-        Log::notice('Processing Image: '.$this->liteBrite->id);
-        Artisan::call('image:convert', ['submission' => $this->liteBrite->id]);
-    }
+  /**
+   * Execute the job.
+   *
+   * @return void
+   */
+  public function handle()
+  {
+    Log::notice('Processing Image: '.$this->liteBrite->id);
+    Artisan::call('image:convert', ['submission' => $this->liteBrite->id]);
+  }
 }

@@ -22,6 +22,7 @@ Route::post('/store', 'LiteBrite@store');
 Route::post('/update/{id}', 'LiteBrite@update');
 Route::post('/uploader', 'LiteBrite@upload');
 Route::post('/delete/{id}', 'LiteBrite@destroy');
+Route::get('/get-submissions', 'LiteBrite@entries');
 
 // lb admin pages
 Route::get('/config', 'LiteBriteConfigController@index');
